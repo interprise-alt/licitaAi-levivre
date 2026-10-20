@@ -1,0 +1,6 @@
+{
+  "name": "LicitaAI Engine — Levivre Viagens",
+  "description": "Co-piloto inteligente especialista em Licitações Públicas e Vendas para o Governo sob a Lei 14.133/2021 para a Levivre Viagens.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

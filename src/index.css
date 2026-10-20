@@ -1,0 +1,230 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #0e1013;
+    color: #e2e8f0;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   SISTEMA DE DESIGN TÁTIL / NEUMÓRFICO ESCURO (MODELO UI.JFIF)
+   Relevo suave, sombras duplas, concavidade, chanfros e destaques luminosos
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* Chassi Externo do Dashboard */
+.tactile-shell {
+  background-color: #15181c;
+  border-radius: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 
+    0 25px 60px -15px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+/* Cartões em Relevo Tátil (Extrusão Suave / Bevel) */
+.tactile-card {
+  background: linear-gradient(145deg, #21252c 0%, #171a1f 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-top-color: rgba(255, 255, 255, 0.12);
+  border-left-color: rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+  box-shadow: 
+    8px 8px 22px rgba(0, 0, 0, 0.55),
+    -5px -5px 15px rgba(255, 255, 255, 0.03),
+    inset 0 1px 1px rgba(255, 255, 255, 0.08);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.tactile-card-raised {
+  background: linear-gradient(145deg, #242930 0%, #191c22 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top-color: rgba(255, 255, 255, 0.16);
+  border-left-color: rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem;
+  box-shadow: 
+    12px 12px 28px rgba(0, 0, 0, 0.65),
+    -7px -7px 18px rgba(255, 255, 255, 0.04),
+    inset 0 1px 1px rgba(255, 255, 255, 0.12);
+}
+
+.tactile-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    10px 10px 26px rgba(0, 0, 0, 0.65),
+    -6px -6px 18px rgba(255, 255, 255, 0.045),
+    inset 0 1px 1px rgba(255, 255, 255, 0.12);
+}
+
+/* Cavidade / Poço Recuado (Concave Well / Inset) para Inputs, Gráficos e Tabelas */
+.tactile-well {
+  background: #131518;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    inset 4px 4px 10px rgba(0, 0, 0, 0.7),
+    inset -2px -2px 6px rgba(255, 255, 255, 0.025);
+}
+
+.tactile-well-sm {
+  background: #14161a;
+  border-radius: 0.875rem;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 
+    inset 3px 3px 7px rgba(0, 0, 0, 0.65),
+    inset -1px -1px 4px rgba(255, 255, 255, 0.025);
+}
+
+/* Botões Táteis com Feedback Físico (Pressionamento) */
+.tactile-btn {
+  background: linear-gradient(145deg, #262b33 0%, #1a1d22 100%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-top-color: rgba(255, 255, 255, 0.14);
+  border-radius: 1rem;
+  color: #e2e8f0;
+  box-shadow: 
+    5px 5px 14px rgba(0, 0, 0, 0.5),
+    -3px -3px 8px rgba(255, 255, 255, 0.035),
+    inset 0 1px 1px rgba(255, 255, 255, 0.08);
+  transition: all 0.15s ease-out;
+}
+
+.tactile-btn:hover {
+  background: linear-gradient(145deg, #2b313a 0%, #1d2127 100%);
+  color: #ffffff;
+}
+
+.tactile-btn:active {
+  transform: translateY(1px) scale(0.99);
+  box-shadow: 
+    inset 3px 3px 7px rgba(0, 0, 0, 0.7),
+    inset -1px -1px 3px rgba(255, 255, 255, 0.04);
+}
+
+/* Botão Tátil Primário - Laranja / Âmbar Quente Vibrante (como na referência) */
+.tactile-btn-primary {
+  background: linear-gradient(135deg, #ff7b2b 0%, #ff4b1f 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 
+    0 6px 20px rgba(255, 75, 31, 0.4),
+    4px 4px 12px rgba(0, 0, 0, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4);
+  transition: all 0.15s ease-out;
+}
+
+.tactile-btn-primary:hover {
+  background: linear-gradient(135deg, #ff8c3a 0%, #ff5722 100%);
+  box-shadow: 
+    0 8px 24px rgba(255, 75, 31, 0.55),
+    inset 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.tactile-btn-primary:active {
+  transform: translateY(1px);
+  box-shadow: 
+    inset 0 3px 8px rgba(0, 0, 0, 0.4),
+    0 2px 10px rgba(255, 75, 31, 0.3);
+}
+
+/* Botão Tátil Esmeralda / Neon Green */
+.tactile-btn-emerald {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 
+    0 6px 20px rgba(16, 185, 129, 0.35),
+    4px 4px 12px rgba(0, 0, 0, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.35);
+  transition: all 0.15s ease-out;
+}
+
+.tactile-btn-emerald:hover {
+  background: linear-gradient(135deg, #22c55e 0%, #10b981 100%);
+  box-shadow: 
+    0 8px 24px rgba(16, 185, 129, 0.5),
+    inset 0 1px 2px rgba(255, 255, 255, 0.45);
+}
+
+/* Botão Tátil de Navegação / Tab Ativa (com Efeito Inset / Recuado) */
+.tactile-tab-active {
+  background: #131519 !important;
+  color: #ff9800 !important;
+  border-color: rgba(255, 152, 0, 0.3) !important;
+  box-shadow: 
+    inset 3px 3px 7px rgba(0, 0, 0, 0.7),
+    inset -1px -1px 3px rgba(255, 255, 255, 0.04),
+    0 0 12px rgba(255, 152, 0, 0.15) !important;
+}
+
+/* Mostrador Circular (Donut Gauge 3D / Dial Knob) */
+.tactile-dial-ring {
+  box-shadow: 
+    6px 6px 16px rgba(0, 0, 0, 0.6),
+    -4px -4px 10px rgba(255, 255, 255, 0.03);
+}
+
+.tactile-dial-knob {
+  background: linear-gradient(145deg, #262a32 0%, #181a1f 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    4px 4px 10px rgba(0, 0, 0, 0.5),
+    -2px -2px 6px rgba(255, 255, 255, 0.035),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Barras Cilíndricas Verticais Coloridas (Gradientes da Imagem) */
+.bar-gradient-orange {
+  background: linear-gradient(180deg, #facc15 0%, #ff8c3a 35%, #ff4b1f 85%, #dc2626 100%);
+  box-shadow: 0 0 12px rgba(255, 100, 30, 0.35);
+}
+
+.bar-gradient-emerald {
+  background: linear-gradient(180deg, #a3e635 0%, #34d399 40%, #10b981 85%, #047857 100%);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+}
+
+/* Custom Scrollbars Elegantes para Tema Tátil */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #111316;
+}
+::-webkit-scrollbar-thumb {
+  background: #252a32;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #333a46;
+}
+
+/* Compatibilidade com Impressão */
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}
