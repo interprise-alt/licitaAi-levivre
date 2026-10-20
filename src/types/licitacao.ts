@@ -113,10 +113,18 @@ export interface CompanyProfile {
   enquadramento: 'ME' | 'EPP' | 'Demais (Lucro Real / Presumido)';
 }
 
+export interface CertificateFileAttachment {
+  name: string;
+  size: number;
+  type: string;
+  uploadedAt: string;
+  dataUrl?: string;
+}
+
 export interface CertificateItem {
   id: string;
   nome: string;
-  esfera: 'Federal' | 'Estadual' | 'Municipal' | 'Trabalhista' | 'Turismo/Técnico' | 'Judiciário';
+  esfera: 'Federal' | 'Estadual' | 'Municipal' | 'Trabalhista' | 'Turismo/Técnico' | 'Judiciário' | 'Outros';
   orgaoEmissor: string;
   linkEmissao: string;
   nivelSicaf: number;
@@ -125,6 +133,8 @@ export interface CertificateItem {
   dataValidade?: string;
   status: 'valida' | 'alerta' | 'vencida';
   observacao: string;
+  arquivoAnexo?: CertificateFileAttachment;
+  codigoAutenticidade?: string;
 }
 
 export type NichoTurismo =

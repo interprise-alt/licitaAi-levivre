@@ -196,7 +196,7 @@ export default function App() {
         )}
 
         {activeTab === 'certidoes' && (
-          <SicafCertidoes />
+          <SicafCertidoes companyProfile={companyProfile} />
         )}
 
         {activeTab === 'chat' && (
@@ -212,7 +212,7 @@ export default function App() {
           <div className="max-w-[1540px] mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]"></span>
-              <strong className="text-slate-200">LicitaAI Engine</strong> · Co-piloto de Licitações & Contratos Administrativos
+              <strong className="text-slate-200">LICITAÇÃO INTELIGENTE</strong> · Plataforma de Licitações & Contratos Administrativos
             </div>
             <div className="flex items-center gap-3">
               <span>Conformidade com a Lei nº 14.133/2021 & LC 123/2006</span>
