@@ -264,15 +264,15 @@ export const TactileAnalyticsDashboard: React.FC<TactileAnalyticsDashboardProps>
 
             {/* Centro: O Visual Centerpiece de Turismo & Negócios Públicos (Fiel à composição da imagem) */}
             <div className="lg:col-span-6 flex items-center justify-center relative">
-              <div className="w-full h-56 sm:h-64 rounded-2xl overflow-hidden tactile-well relative border border-white/[0.08] shadow-[0_15px_35px_rgba(0,0,0,0.8)]">
+              <div className="w-full h-72 sm:h-80 md:h-[340px] rounded-2xl overflow-hidden tactile-well relative border border-white/[0.12] shadow-[0_15px_35px_rgba(0,0,0,0.85)] group">
                 <img
-                  src="/travel_centerpiece.jpg"
+                  src="/travel_centerpiece.png"
                   alt="Centro de Excelência em Turismo & Licitações Públicas Levivre Viagens"
-                  className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 filter brightness-95"
+                  className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                 />
                 {/* Degradê Escuro Suave nas Bordas para Integração Perfeita */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#15181c] via-transparent to-transparent opacity-80" />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#15181c]/70 via-transparent to-[#15181c]/70" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#15181c]/80 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#15181c]/40 via-transparent to-[#15181c]/40 pointer-events-none" />
 
                 {/* Badge Flutuante Tátil no Centro */}
                 <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between bg-[#121417]/85 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/[0.1] shadow-lg">
