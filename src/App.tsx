@@ -123,9 +123,9 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0e1013] text-slate-100 flex flex-col font-sans p-2 sm:p-4 lg:p-6 selection:bg-amber-500/30 selection:text-amber-200">
+    <div className="min-h-screen bg-[#16191f] text-slate-100 flex flex-col font-sans p-2 sm:p-4 lg:p-6 selection:bg-amber-500/30 selection:text-amber-200">
       {/* Chassis Principal com acabamento tátil neumórfico externo (inspirado no UI.jfif) */}
-      <div className="tactile-shell max-w-[1540px] w-full mx-auto flex flex-col min-h-[96vh] overflow-hidden border border-white/[0.07]">
+      <div className="tactile-shell max-w-[1540px] w-full mx-auto flex flex-col min-h-[96vh] overflow-hidden border border-white/[0.08]">
         {/* Top Header estritamente remodelado com tema tátil */}
         <Header
           activeTab={activeTab}
@@ -135,8 +135,8 @@ export default function App() {
           companyProfile={companyProfile}
         />
 
-        {/* Barra de Status & Confiança (Cavidade Tátil Escura com Destaques Luminosos) */}
-        <div className="bg-[#111317] border-b border-white/[0.04] text-[11px] text-slate-400 py-2 px-4 sm:px-6 lg:px-8">
+        {/* Barra de Status & Confiança (Cavidade Tátil com Destaques Luminosos) */}
+        <div className="bg-[#181d25] border-b border-white/[0.05] text-[11px] text-slate-400 py-2 px-4 sm:px-6 lg:px-8">
           <div className="max-w-[1540px] mx-auto flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-2 flex-wrap">
               <span className="font-semibold text-slate-200 flex items-center gap-1.5">
@@ -207,8 +207,8 @@ export default function App() {
         )}
       </main>
 
-        {/* Rodapé Tátil Escuro */}
-        <footer className="bg-[#121418] border-t border-white/[0.05] mt-auto">
+        {/* Rodapé Tátil Escuro Refinado */}
+        <footer className="bg-[#181d25] border-t border-white/[0.06] mt-auto">
           <div className="max-w-[1540px] mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]"></span>

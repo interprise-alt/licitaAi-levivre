@@ -1,14 +1,28 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'MichaelFont';
+  src: url('/fonts/michael.otf') format('opentype'),
+       url('/fonts/michael.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-michael {
+  font-family: 'MichaelFont', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
 @layer base {
   :root {
     --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
+    --font-michael: 'MichaelFont', 'Plus Jakarta Sans', sans-serif;
   }
 
   body {
     font-family: var(--font-sans);
-    background-color: #0e1013;
+    background-color: #16191f;
     color: #e2e8f0;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
@@ -16,99 +30,99 @@
 }
 
 /* ════════════════════════════════════════════════════════════════════════════
-   SISTEMA DE DESIGN TÁTIL / NEUMÓRFICO ESCURO (MODELO UI.JFIF)
+   SISTEMA DE DESIGN TÁTIL / NEUMÓRFICO ESCURO REFINADO
    Relevo suave, sombras duplas, concavidade, chanfros e destaques luminosos
    ════════════════════════════════════════════════════════════════════════════ */
 
 /* Chassi Externo do Dashboard */
 .tactile-shell {
-  background-color: #15181c;
+  background-color: #1d222a;
   border-radius: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 
-    0 25px 60px -15px rgba(0, 0, 0, 0.9),
-    0 0 0 1px rgba(255, 255, 255, 0.05),
-    inset 0 1px 2px rgba(255, 255, 255, 0.1);
+    0 25px 60px -15px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    inset 0 1px 2px rgba(255, 255, 255, 0.12);
 }
 
 /* Cartões em Relevo Tátil (Extrusão Suave / Bevel) */
 .tactile-card {
-  background: linear-gradient(145deg, #21252c 0%, #171a1f 100%);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-top-color: rgba(255, 255, 255, 0.12);
-  border-left-color: rgba(255, 255, 255, 0.08);
+  background: linear-gradient(145deg, #282f3a 0%, #1e242d 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top-color: rgba(255, 255, 255, 0.16);
+  border-left-color: rgba(255, 255, 255, 0.11);
   border-radius: 1.5rem;
   box-shadow: 
-    8px 8px 22px rgba(0, 0, 0, 0.55),
-    -5px -5px 15px rgba(255, 255, 255, 0.03),
-    inset 0 1px 1px rgba(255, 255, 255, 0.08);
+    8px 8px 22px rgba(0, 0, 0, 0.45),
+    -5px -5px 15px rgba(255, 255, 255, 0.04),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
 }
 
 .tactile-card-raised {
-  background: linear-gradient(145deg, #242930 0%, #191c22 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-top-color: rgba(255, 255, 255, 0.16);
-  border-left-color: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(145deg, #2e3643 0%, #232933 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top-color: rgba(255, 255, 255, 0.2);
+  border-left-color: rgba(255, 255, 255, 0.13);
   border-radius: 1.5rem;
   box-shadow: 
-    12px 12px 28px rgba(0, 0, 0, 0.65),
-    -7px -7px 18px rgba(255, 255, 255, 0.04),
-    inset 0 1px 1px rgba(255, 255, 255, 0.12);
+    12px 12px 28px rgba(0, 0, 0, 0.55),
+    -7px -7px 18px rgba(255, 255, 255, 0.05),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
 }
 
 .tactile-card-hover:hover {
   transform: translateY(-2px);
   box-shadow: 
-    10px 10px 26px rgba(0, 0, 0, 0.65),
-    -6px -6px 18px rgba(255, 255, 255, 0.045),
-    inset 0 1px 1px rgba(255, 255, 255, 0.12);
+    10px 10px 26px rgba(0, 0, 0, 0.55),
+    -6px -6px 18px rgba(255, 255, 255, 0.055),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
 }
 
 /* Cavidade / Poço Recuado (Concave Well / Inset) para Inputs, Gráficos e Tabelas */
 .tactile-well {
-  background: #131518;
+  background: #171b22;
   border-radius: 1.25rem;
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  border-bottom-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
   box-shadow: 
-    inset 4px 4px 10px rgba(0, 0, 0, 0.7),
-    inset -2px -2px 6px rgba(255, 255, 255, 0.025);
+    inset 4px 4px 10px rgba(0, 0, 0, 0.55),
+    inset -2px -2px 6px rgba(255, 255, 255, 0.035);
 }
 
 .tactile-well-sm {
-  background: #14161a;
+  background: #181d25;
   border-radius: 0.875rem;
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: 
-    inset 3px 3px 7px rgba(0, 0, 0, 0.65),
-    inset -1px -1px 4px rgba(255, 255, 255, 0.025);
+    inset 3px 3px 7px rgba(0, 0, 0, 0.5),
+    inset -1px -1px 4px rgba(255, 255, 255, 0.035);
 }
 
 /* Botões Táteis com Feedback Físico (Pressionamento) */
 .tactile-btn {
-  background: linear-gradient(145deg, #262b33 0%, #1a1d22 100%);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-top-color: rgba(255, 255, 255, 0.14);
+  background: linear-gradient(145deg, #2f3643 0%, #222731 100%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-top-color: rgba(255, 255, 255, 0.18);
   border-radius: 1rem;
   color: #e2e8f0;
   box-shadow: 
-    5px 5px 14px rgba(0, 0, 0, 0.5),
-    -3px -3px 8px rgba(255, 255, 255, 0.035),
-    inset 0 1px 1px rgba(255, 255, 255, 0.08);
+    5px 5px 14px rgba(0, 0, 0, 0.4),
+    -3px -3px 8px rgba(255, 255, 255, 0.045),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
   transition: all 0.15s ease-out;
 }
 
 .tactile-btn:hover {
-  background: linear-gradient(145deg, #2b313a 0%, #1d2127 100%);
+  background: linear-gradient(145deg, #363e4d 0%, #272d38 100%);
   color: #ffffff;
 }
 
 .tactile-btn:active {
   transform: translateY(1px) scale(0.99);
   box-shadow: 
-    inset 3px 3px 7px rgba(0, 0, 0, 0.7),
-    inset -1px -1px 3px rgba(255, 255, 255, 0.04);
+    inset 3px 3px 7px rgba(0, 0, 0, 0.6),
+    inset -1px -1px 3px rgba(255, 255, 255, 0.05);
 }
 
 /* Botão Tátil Primário - Laranja / Âmbar Quente Vibrante (como na referência) */
@@ -162,29 +176,29 @@
 
 /* Botão Tátil de Navegação / Tab Ativa (com Efeito Inset / Recuado) */
 .tactile-tab-active {
-  background: #131519 !important;
+  background: #181d25 !important;
   color: #ff9800 !important;
-  border-color: rgba(255, 152, 0, 0.3) !important;
+  border-color: rgba(255, 152, 0, 0.35) !important;
   box-shadow: 
-    inset 3px 3px 7px rgba(0, 0, 0, 0.7),
-    inset -1px -1px 3px rgba(255, 255, 255, 0.04),
-    0 0 12px rgba(255, 152, 0, 0.15) !important;
+    inset 3px 3px 7px rgba(0, 0, 0, 0.55),
+    inset -1px -1px 3px rgba(255, 255, 255, 0.05),
+    0 0 12px rgba(255, 152, 0, 0.18) !important;
 }
 
 /* Mostrador Circular (Donut Gauge 3D / Dial Knob) */
 .tactile-dial-ring {
   box-shadow: 
-    6px 6px 16px rgba(0, 0, 0, 0.6),
-    -4px -4px 10px rgba(255, 255, 255, 0.03);
+    6px 6px 16px rgba(0, 0, 0, 0.5),
+    -4px -4px 10px rgba(255, 255, 255, 0.04);
 }
 
 .tactile-dial-knob {
-  background: linear-gradient(145deg, #262a32 0%, #181a1f 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(145deg, #2e3542 0%, #20242e 100%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   box-shadow: 
-    4px 4px 10px rgba(0, 0, 0, 0.5),
-    -2px -2px 6px rgba(255, 255, 255, 0.035),
-    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    4px 4px 10px rgba(0, 0, 0, 0.4),
+    -2px -2px 6px rgba(255, 255, 255, 0.04),
+    inset 0 1px 1px rgba(255, 255, 255, 0.12);
 }
 
 /* Barras Cilíndricas Verticais Coloridas (Gradientes da Imagem) */
@@ -204,15 +218,15 @@
   height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #111316;
+  background: #161920;
 }
 ::-webkit-scrollbar-thumb {
-  background: #252a32;
+  background: #2d3442;
   border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #333a46;
+  background: #3c4658;
 }
 
 /* Compatibilidade com Impressão */

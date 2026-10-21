@@ -589,7 +589,7 @@ export const SicafCertidoes: React.FC<SicafCertidoesProps> = ({ companyProfile =
                 placeholder="Filtrar por nome da certidão, órgão emissor ou esfera..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="tactile-input w-full pl-9 pr-3 py-2 text-xs rounded-xl text-white placeholder-slate-500 bg-[#0c0d10] border border-white/[0.08]"
+                className="tactile-input w-full pl-9 pr-3 py-2 text-xs rounded-xl text-white placeholder-slate-500 bg-[#141820] border border-white/[0.08]"
               />
               {searchQuery && (
                 <button
@@ -721,7 +721,7 @@ export const SicafCertidoes: React.FC<SicafCertidoesProps> = ({ companyProfile =
                   </div>
 
                   {/* MONITORAMENTO & EDIÇÃO DE VALIDADE */}
-                  <div className="p-3 rounded-xl bg-[#0e1014] border border-white/[0.05] space-y-2">
+                  <div className="p-3 rounded-xl bg-[#181d25] border border-white/[0.05] space-y-2">
                     <div className="flex items-center justify-between text-xs">
                       <div className="flex items-center gap-1.5 text-slate-300">
                         <Clock className={`w-3.5 h-3.5 ${isAlerta ? 'text-amber-400 animate-pulse' : 'text-slate-400'}`} />
@@ -755,7 +755,7 @@ export const SicafCertidoes: React.FC<SicafCertidoesProps> = ({ companyProfile =
                               type="date"
                               value={editingEmissaoDate}
                               onChange={(e) => setEditingEmissaoDate(e.target.value)}
-                              className="tactile-input w-full p-1.5 rounded-lg text-xs text-white bg-[#15181e] border border-white/[0.1]"
+                              className="tactile-input w-full p-1.5 rounded-lg text-xs text-white bg-[#1e2430] border border-white/[0.1]"
                             />
                           </div>
                           <div>
@@ -764,7 +764,7 @@ export const SicafCertidoes: React.FC<SicafCertidoesProps> = ({ companyProfile =
                               type="date"
                               value={editingValidadeDate}
                               onChange={(e) => setEditingValidadeDate(e.target.value)}
-                              className="tactile-input w-full p-1.5 rounded-lg text-xs text-white bg-[#15181e] border border-white/[0.1]"
+                              className="tactile-input w-full p-1.5 rounded-lg text-xs text-white bg-[#1e2430] border border-white/[0.1]"
                             />
                           </div>
                         </div>
@@ -918,7 +918,7 @@ export const SicafCertidoes: React.FC<SicafCertidoesProps> = ({ companyProfile =
                       <button
                         type="button"
                         onClick={() => fileInputRefs.current[cert.id]?.click()}
-                        className="w-full border-2 border-dashed border-white/[0.1] hover:border-amber-400/50 rounded-xl p-3 flex items-center justify-center gap-2 text-xs text-slate-400 hover:text-white transition-all cursor-pointer bg-[#0c0d10]/40 group"
+                        className="w-full border-2 border-dashed border-white/[0.1] hover:border-amber-400/50 rounded-xl p-3 flex items-center justify-center gap-2 text-xs text-slate-400 hover:text-white transition-all cursor-pointer bg-[#141820]/40 group"
                       >
                         <Upload className="w-4 h-4 text-amber-400 group-hover:scale-110 transition-transform" />
                         <span>
@@ -1108,7 +1108,7 @@ export const SicafCertidoes: React.FC<SicafCertidoesProps> = ({ companyProfile =
                   value={orgaoDestinatario}
                   onChange={(e) => setOrgaoDestinatario(e.target.value)}
                   placeholder="Ex: Tribunal Regional Federal da 3ª Região ou Prefeitura de Santos"
-                  className="tactile-input w-full p-2.5 rounded-xl text-white bg-[#0e1014] border border-white/[0.1]"
+                  className="tactile-input w-full p-2.5 rounded-xl text-white bg-[#181d25] border border-white/[0.1]"
                 />
               </div>
 
@@ -1122,7 +1122,7 @@ export const SicafCertidoes: React.FC<SicafCertidoesProps> = ({ companyProfile =
                     value={numeroProcesso}
                     onChange={(e) => setNumeroProcesso(e.target.value)}
                     placeholder="Ex: Dispensa Eletrônica nº 28/2026"
-                    className="tactile-input w-full p-2.5 rounded-xl text-white bg-[#0e1014] border border-white/[0.1]"
+                    className="tactile-input w-full p-2.5 rounded-xl text-white bg-[#181d25] border border-white/[0.1]"
                   />
                 </div>
 
@@ -1135,7 +1135,7 @@ export const SicafCertidoes: React.FC<SicafCertidoesProps> = ({ companyProfile =
                     value={numeroEditalOuDispensa}
                     onChange={(e) => setNumeroEditalOuDispensa(e.target.value)}
                     placeholder="Ex: Proc. SEI 0019284/2026"
-                    className="tactile-input w-full p-2.5 rounded-xl text-white bg-[#0e1014] border border-white/[0.1]"
+                    className="tactile-input w-full p-2.5 rounded-xl text-white bg-[#181d25] border border-white/[0.1]"
                   />
                 </div>
               </div>
@@ -1207,7 +1207,7 @@ export const SicafCertidoes: React.FC<SicafCertidoesProps> = ({ companyProfile =
             </p>
 
             <div className="relative">
-              <pre className="p-4 rounded-xl bg-[#0a0b0d] border border-white/[0.08] text-[11px] font-mono text-slate-300 whitespace-pre-wrap max-h-64 overflow-y-auto leading-relaxed select-all">
+              <pre className="p-4 rounded-xl bg-[#141820] border border-white/[0.08] text-[11px] font-mono text-slate-300 whitespace-pre-wrap max-h-64 overflow-y-auto leading-relaxed select-all">
                 {generateForwardMessageText()}
               </pre>
 
@@ -1299,7 +1299,7 @@ export const SicafCertidoes: React.FC<SicafCertidoesProps> = ({ companyProfile =
                   value={newDocNome}
                   onChange={(e) => setNewDocNome(e.target.value)}
                   placeholder="Ex: Atestado de Capacidade Técnica - Viagens Corporativas"
-                  className="tactile-input w-full p-2.5 rounded-xl text-white bg-[#0e1014] border border-white/[0.1]"
+                  className="tactile-input w-full p-2.5 rounded-xl text-white bg-[#181d25] border border-white/[0.1]"
                 />
               </div>
 
@@ -1313,7 +1313,7 @@ export const SicafCertidoes: React.FC<SicafCertidoesProps> = ({ companyProfile =
                     value={newDocOrgao}
                     onChange={(e) => setNewDocOrgao(e.target.value)}
                     placeholder="Ex: Ministério da Defesa ou TJSP"
-                    className="tactile-input w-full p-2.5 rounded-xl text-white bg-[#0e1014] border border-white/[0.1]"
+                    className="tactile-input w-full p-2.5 rounded-xl text-white bg-[#181d25] border border-white/[0.1]"
                   />
                 </div>
 
@@ -1324,7 +1324,7 @@ export const SicafCertidoes: React.FC<SicafCertidoesProps> = ({ companyProfile =
                   <select
                     value={newDocEsfera}
                     onChange={(e) => setNewDocEsfera(e.target.value as any)}
-                    className="tactile-input w-full p-2.5 rounded-xl text-white bg-[#0e1014] border border-white/[0.1]"
+                    className="tactile-input w-full p-2.5 rounded-xl text-white bg-[#181d25] border border-white/[0.1]"
                   >
                     <option value="Federal">Federal</option>
                     <option value="Estadual">Estadual</option>
@@ -1346,7 +1346,7 @@ export const SicafCertidoes: React.FC<SicafCertidoesProps> = ({ companyProfile =
                     type="date"
                     value={newDocEmissao}
                     onChange={(e) => setNewDocEmissao(e.target.value)}
-                    className="tactile-input w-full p-2.5 rounded-xl text-white bg-[#0e1014] border border-white/[0.1]"
+                    className="tactile-input w-full p-2.5 rounded-xl text-white bg-[#181d25] border border-white/[0.1]"
                   />
                 </div>
 
@@ -1358,7 +1358,7 @@ export const SicafCertidoes: React.FC<SicafCertidoesProps> = ({ companyProfile =
                     type="date"
                     value={newDocValidade}
                     onChange={(e) => setNewDocValidade(e.target.value)}
-                    className="tactile-input w-full p-2.5 rounded-xl text-white bg-[#0e1014] border border-white/[0.1]"
+                    className="tactile-input w-full p-2.5 rounded-xl text-white bg-[#181d25] border border-white/[0.1]"
                   />
                 </div>
               </div>
@@ -1372,7 +1372,7 @@ export const SicafCertidoes: React.FC<SicafCertidoesProps> = ({ companyProfile =
                   value={newDocLink}
                   onChange={(e) => setNewDocLink(e.target.value)}
                   placeholder="https://..."
-                  className="tactile-input w-full p-2.5 rounded-xl text-white bg-[#0e1014] border border-white/[0.1]"
+                  className="tactile-input w-full p-2.5 rounded-xl text-white bg-[#181d25] border border-white/[0.1]"
                 />
               </div>
             </div>
@@ -1402,7 +1402,7 @@ export const SicafCertidoes: React.FC<SicafCertidoesProps> = ({ companyProfile =
       {viewingFile && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
           <div className="tactile-card w-full max-w-4xl h-[85vh] rounded-2xl flex flex-col border border-white/[0.1] shadow-2xl overflow-hidden">
-            <div className="p-4 border-b border-white/[0.08] flex items-center justify-between gap-3 bg-[#111317]">
+            <div className="p-4 border-b border-white/[0.08] flex items-center justify-between gap-3 bg-[#1a1f28]">
               <div className="flex items-center gap-2.5 min-w-0">
                 <FileText className="w-5 h-5 text-amber-400 shrink-0" />
                 <div className="min-w-0">
@@ -1434,7 +1434,7 @@ export const SicafCertidoes: React.FC<SicafCertidoesProps> = ({ companyProfile =
               </div>
             </div>
 
-            <div className="flex-1 bg-[#0b0c0e] p-2 overflow-auto flex items-center justify-center">
+            <div className="flex-1 bg-[#141820] p-2 overflow-auto flex items-center justify-center">
               {viewingFile.attachment.type.startsWith('image/') ? (
                 <img
                   src={viewingFile.attachment.dataUrl}

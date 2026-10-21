@@ -40,7 +40,7 @@ export const CompanyProfileModal: React.FC<CompanyProfileModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-md">
       <div className="tactile-card-raised border border-white/[0.09] shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="p-6 border-b border-white/[0.06] bg-[#16181d] flex items-center justify-between">
+        <div className="p-6 border-b border-white/[0.06] bg-[#1e2430] flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl tactile-btn flex items-center justify-center text-amber-400 font-bold">
               <Building2 className="w-5 h-5" />
@@ -111,7 +111,7 @@ export const CompanyProfileModal: React.FC<CompanyProfileModalProps> = ({
               <select
                 value={formData.enquadramento}
                 onChange={(e) => handleChange('enquadramento', e.target.value as any)}
-                className="w-full p-2.5 bg-[#14161a] border border-white/[0.08] rounded-xl text-slate-200 focus:outline-hidden focus:border-amber-500/50"
+                className="w-full p-2.5 bg-[#1b2029] border border-white/[0.08] rounded-xl text-slate-200 focus:outline-hidden focus:border-amber-500/50"
               >
                 <option value="EPP">EPP - Empresa de Pequeno Porte (Até R$ 4,8M/ano)</option>
                 <option value="ME">ME - Microempresa (Até R$ 360k/ano)</option>

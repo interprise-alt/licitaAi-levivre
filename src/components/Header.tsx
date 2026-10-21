@@ -8,7 +8,6 @@ import {
   Zap,
   ShieldCheck,
   PlusCircle,
-  Download,
 } from 'lucide-react';
 import { CompanyProfile } from '../types/licitacao';
 
@@ -85,7 +84,7 @@ export const Header: React.FC<HeaderProps> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-[#14171c]/95 backdrop-blur-md border-b border-white/[0.08] shadow-[0_4px_24px_rgba(0,0,0,0.5)]">
+    <header className="sticky top-0 z-50 bg-[#1a1f28]/95 backdrop-blur-md border-b border-white/[0.08] shadow-[0_4px_24px_rgba(0,0,0,0.45)]">
       <div className="w-full max-w-[1540px] mx-auto px-3 sm:px-5 lg:px-6">
         {/* Linha Superior: Logo Oficial da Levivre em Destaque, Título & Ações Principais */}
         <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-4 py-3 sm:py-4 min-h-[120px] sm:min-h-[150px]">
@@ -93,51 +92,46 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center gap-4 sm:gap-5 shrink-0">
             <button
               onClick={() => setActiveTab('radar')}
-              className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-2xl bg-[#0c0d10] flex items-center justify-center shadow-[0_12px_36px_rgba(0,0,0,0.9),0_4px_12px_rgba(0,0,0,0.7)] hover:shadow-[0_18px_48px_rgba(0,0,0,0.95)] hover:scale-105 active:scale-95 transition-all group overflow-hidden p-1 sm:p-1.5 shrink-0 cursor-pointer"
+              className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-2xl bg-[#141820] flex items-center justify-center shadow-[0_12px_36px_rgba(0,0,0,0.7),0_4px_12px_rgba(0,0,0,0.5)] hover:shadow-[0_18px_48px_rgba(0,0,0,0.85)] hover:scale-105 active:scale-95 transition-all group overflow-hidden p-1 sm:p-1.5 shrink-0 cursor-pointer border border-white/[0.06]"
               title="LICITAÇÃO INTELIGENTE — Levivre Viagens (Ir para o Radar)"
             >
               <img
                 src="/levivre-logo.png"
                 alt="Levivre Viagens"
-                className="w-full h-full object-contain rounded-xl drop-shadow-[0_4px_16px_rgba(0,0,0,0.5)] transition-transform duration-300 group-hover:scale-105"
+                className="w-full h-full object-contain rounded-xl drop-shadow-[0_4px_16px_rgba(0,0,0,0.4)] transition-transform duration-300 group-hover:scale-105"
               />
               <span className="sr-only">Levivre Viagens</span>
             </button>
 
             <div className="flex flex-col text-left justify-center">
-              <div className="flex flex-wrap items-center gap-2.5">
-                <span className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight uppercase whitespace-nowrap drop-shadow-sm">
-                  LICITAÇÃO INTELIGENTE
-                </span>
-                <span className="px-2.5 py-1 text-xs sm:text-xs font-bold uppercase tracking-wider text-amber-300 bg-amber-500/20 border border-amber-500/40 rounded-lg shadow-sm">
-                  Levivre Viagens
+              <div>
+                <span className="font-michael lowercase text-3xl sm:text-4xl lg:text-[50px] font-normal text-white tracking-[0.025em] whitespace-nowrap drop-shadow-md leading-none inline-block">
+                  licitaçã<span className="-ml-[0.09em]">o</span> inteligente
                 </span>
               </div>
-              <span className="text-xs sm:text-sm text-slate-400 whitespace-nowrap flex items-center gap-2 mt-1">
+
+              <div className="text-xs sm:text-sm text-slate-400 whitespace-nowrap flex items-center gap-2 mt-1">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]"></span>
                 <span className="text-slate-200 font-semibold hidden xs:inline">Nova Lei 14.133/2021</span>
                 <span className="text-slate-600 hidden xs:inline">·</span>
                 <span className="text-slate-300">Turismo & Passagens Corporativas</span>
-              </span>
+              </div>
+
+              <div className="mt-1.5 flex items-center">
+                <span className="px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider text-amber-300 bg-amber-500/20 border border-amber-500/40 rounded-lg shadow-sm inline-flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                  Levivre Viagens
+                </span>
+              </div>
             </div>
           </div>
 
           {/* Barra de Ações Rápidas (Direita) */}
           <div className="flex items-center gap-2 shrink-0">
-            <a
-              href="/download-zip"
-              download="licitaai-engine.zip"
-              title="Baixar todo o código-fonte limpo compactado em .ZIP para subir ao GitHub"
-              className="hidden md:flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-slate-300 hover:text-white tactile-btn rounded-xl transition-all whitespace-nowrap"
-            >
-              <Download className="w-3.5 h-3.5 text-amber-400" />
-              <span>Baixar ZIP</span>
-            </a>
-
             <button
               onClick={onOpenProfile}
               title={`Perfil Cadastral: ${companyProfile.razaoSocial}`}
-              className="flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-slate-300 hover:text-white tactile-btn rounded-xl transition-all whitespace-nowrap cursor-pointer"
+              className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium text-slate-200 hover:text-white tactile-btn rounded-xl transition-all whitespace-nowrap cursor-pointer"
             >
               <Building2 className="w-3.5 h-3.5 text-slate-400" />
               <span className="hidden sm:inline">Perfil da Empresa</span>

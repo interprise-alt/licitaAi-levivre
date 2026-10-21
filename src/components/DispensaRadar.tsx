@@ -188,7 +188,7 @@ ${companyProfile.razaoSocial}`;
               <select
                 value={tipoServico}
                 onChange={(e) => setTipoServico(e.target.value)}
-                className="w-full p-2.5 bg-[#14161a] border border-white/[0.08] rounded-xl text-slate-200 focus:outline-hidden focus:border-amber-500/50"
+                className="w-full p-2.5 bg-[#1b2029] border border-white/[0.08] rounded-xl text-slate-200 focus:outline-hidden focus:border-amber-500/50"
               >
                 <option value="Passagens Aéreas Nacionais & Hospedagem">
                   Passagens Aéreas Nacionais & Hospedagem
@@ -291,7 +291,7 @@ ${companyProfile.razaoSocial}`;
 
             {/* Visual Segmented Breakdown Bar */}
             <div className="pt-2">
-              <div className="w-full h-2 rounded-full overflow-hidden flex bg-[#121418] border border-white/[0.05]">
+              <div className="w-full h-2 rounded-full overflow-hidden flex bg-[#181d25] border border-white/[0.05]">
                 <div style={{ width: `${(subtotalTarifas / valorTotalProposta) * 100}%` }} className="bg-sky-500" title="Tarifas" />
                 <div style={{ width: `${(totalTaxaDU / valorTotalProposta) * 100}%` }} className="bg-emerald-500" title="Taxa Levivre" />
                 <div style={{ width: `${(taxaEmbarqueEstimada / valorTotalProposta) * 100}%` }} className="bg-amber-500" title="Taxas Embarque" />
@@ -329,7 +329,7 @@ ${companyProfile.razaoSocial}`;
 
         {/* Visualização da Proposta Formatada */}
         <div className="lg:col-span-7 tactile-card overflow-hidden flex flex-col">
-          <div className="p-4 bg-[#16181d] border-b border-white/[0.06] flex items-center justify-between">
+          <div className="p-4 bg-[#1e2430] border-b border-white/[0.06] flex items-center justify-between">
             <div className="flex items-center gap-2">
               <FileText className="w-4 h-4 text-amber-400" />
               <span className="text-xs font-bold text-white uppercase tracking-wider">

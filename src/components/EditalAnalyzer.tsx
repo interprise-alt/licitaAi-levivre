@@ -210,7 +210,7 @@ export const EditalAnalyzer: React.FC<EditalAnalyzerProps> = ({
       {/* SESSÃO 02: IDENTIFICAÇÃO DO CERTAME & DADOS DO COMPRADOR */}
       <section className="tactile-card overflow-hidden">
         {/* Header Strip */}
-        <div className="p-6 border-b border-white/[0.06] bg-[#16181d]">
+        <div className="p-6 border-b border-white/[0.06] bg-[#1e2430]">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <div className="flex items-center gap-2 mb-1">
@@ -295,7 +295,7 @@ export const EditalAnalyzer: React.FC<EditalAnalyzerProps> = ({
         </div>
 
         {/* ALERTA DE REVISÃO HUMANA & FIT */}
-        <div className="bg-[#121417] border-b border-white/[0.05] px-6 py-2.5 flex items-center justify-between text-xs text-slate-300">
+        <div className="bg-[#181d25] border-b border-white/[0.05] px-6 py-2.5 flex items-center justify-between text-xs text-slate-300">
           <div className="flex items-center gap-2">
             <UserCheck className="w-4 h-4 text-emerald-400 shrink-0" />
             <span>
@@ -636,7 +636,7 @@ export const EditalAnalyzer: React.FC<EditalAnalyzerProps> = ({
         </div>
 
         {/* SESSÃO 05: PARECER ESTRATÉGICO & VANTAGEM COMPETITIVA */}
-        <div className="p-6 bg-[#16181d]">
+        <div className="p-6 bg-[#1e2430]">
           <div className="mb-3">
             <span className="text-[10px] font-bold text-amber-400 uppercase tracking-widest">
               Sessão 05 · Parecer do Especialista & Vantagens Levivre

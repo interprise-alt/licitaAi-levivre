@@ -126,14 +126,14 @@ Como posso te apoiar hoje?`,
   return (
     <div className="tactile-card overflow-hidden flex flex-col h-[720px]">
       {/* Chat Header in Dark Tactile */}
-      <div className="p-5 bg-[#16181d] border-b border-white/[0.06] flex items-center justify-between">
+      <div className="p-5 bg-[#1e2430] border-b border-white/[0.06] flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl tactile-btn flex items-center justify-center text-amber-400 font-bold">
             <Sparkles className="w-4 h-4" />
           </div>
           <div>
             <div className="text-sm font-bold text-white">
-              Co-piloto Jurídico LicitaAI
+              Co-piloto Jurídico · LICITAÇÃO INTELIGENTE
             </div>
             <div className="text-xs text-slate-400">
               Especialista em Lei nº 14.133/2021 & Turismo Governamental
@@ -147,7 +147,7 @@ Como posso te apoiar hoje?`,
       </div>
 
       {/* Suggested prompts strip in dark tactile */}
-      <div className="px-5 py-3 bg-[#121418] border-b border-white/[0.05] flex items-center gap-2 overflow-x-auto text-xs whitespace-nowrap scrollbar-none">
+      <div className="px-5 py-3 bg-[#181d25] border-b border-white/[0.05] flex items-center gap-2 overflow-x-auto text-xs whitespace-nowrap scrollbar-none">
         <span className="text-[10px] font-bold text-amber-400 uppercase tracking-widest shrink-0">
           Consultas Frequentes:
         </span>
@@ -163,7 +163,7 @@ Como posso te apoiar hoje?`,
       </div>
 
       {/* Messages area */}
-      <div className="flex-1 p-6 overflow-y-auto space-y-4 bg-[#0e1013]/60">
+      <div className="flex-1 p-6 overflow-y-auto space-y-4 bg-[#161920]/60">
         {messages.map((msg) => {
           const isUser = msg.sender === 'user';
           return (
@@ -215,7 +215,7 @@ Como posso te apoiar hoje?`,
       </div>
 
       {/* Input bar */}
-      <div className="p-4 bg-[#14161a] border-t border-white/[0.06]">
+      <div className="p-4 bg-[#1b2029] border-t border-white/[0.06]">
         <form
           onSubmit={(e) => {
             e.preventDefault();

@@ -345,7 +345,7 @@ export const DocumentGenerator: React.FC<DocumentGeneratorProps> = ({
       {/* SESSÃO 02: VISUALIZAÇÃO DA MINUTA & FERRAMENTAS */}
       <section className="tactile-card overflow-hidden">
         {/* Header da Peça */}
-        <div className="p-5 border-b border-white/[0.06] bg-[#16181d] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="p-5 border-b border-white/[0.06] bg-[#1e2430] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2">
               <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
@@ -406,7 +406,7 @@ export const DocumentGenerator: React.FC<DocumentGeneratorProps> = ({
         </div>
 
         {/* ALERTA: REVISÃO HUMANA OBRIGATÓRIA */}
-        <div className="bg-[#121417] border-b border-white/[0.05] px-6 py-2.5 flex items-center justify-between text-xs text-slate-300">
+        <div className="bg-[#181d25] border-b border-white/[0.05] px-6 py-2.5 flex items-center justify-between text-xs text-slate-300">
           <div className="flex items-center gap-2">
             <UserCheck className="w-4 h-4 text-amber-400 shrink-0" />
             <span>
@@ -420,7 +420,7 @@ export const DocumentGenerator: React.FC<DocumentGeneratorProps> = ({
 
         {/* PAINEL DE RESULTADO DO SIMULADOR DE JULGAMENTO (QUANDO ATIVADO) */}
         {simulationResult && (
-          <div className="p-6 bg-[#181b21] border-b border-white/[0.06] transition-all">
+          <div className="p-6 bg-[#202530] border-b border-white/[0.06] transition-all">
             {/* TOAST / BANNER DE CONFIRMAÇÃO DE BLINDAGEM */}
             {patchToast && (
               <div className={`mb-4 p-3 rounded-xl border flex items-center justify-between text-xs transition-all ${
@@ -526,7 +526,7 @@ export const DocumentGenerator: React.FC<DocumentGeneratorProps> = ({
 
                     return (
                       <li key={i} className={`p-2.5 rounded-xl border transition-all ${
-                        isBlinded ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300' : 'bg-[#1a1e24] border-white/[0.06]'
+                        isBlinded ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300' : 'bg-[#222834] border-white/[0.06]'
                       }`}>
                         <div className="flex items-start justify-between gap-2">
                           <div className="flex items-start gap-1.5 flex-1">

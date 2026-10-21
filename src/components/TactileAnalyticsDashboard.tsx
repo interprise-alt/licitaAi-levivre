@@ -31,9 +31,9 @@ export const TactileAnalyticsDashboard: React.FC<TactileAnalyticsDashboardProps>
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-amber-400 shadow-[0_0_10px_rgba(251,191,36,0.8)] animate-pulse"></span>
               <span className="text-[11px] font-bold text-amber-400/90 uppercase tracking-widest">
-                Painel Tátil Executivo · LicitaAI Engine
+                Painel Tátil Executivo · LICITAÇÃO INTELIGENTE
               </span>
-              <span className="px-2 py-0.5 rounded-md text-[9px] font-bold bg-[#14161a] border border-white/[0.06] text-slate-300">
+              <span className="px-2 py-0.5 rounded-md text-[9px] font-bold bg-[#1b2029] border border-white/[0.08] text-slate-300">
                 Modelo 3D Tátil
               </span>
             </div>
@@ -44,7 +44,7 @@ export const TactileAnalyticsDashboard: React.FC<TactileAnalyticsDashboardProps>
 
           <div className="flex items-center gap-2">
             <span className="text-[11px] text-slate-400">Pipeline Total:</span>
-            <div className="px-3 py-1.5 rounded-xl bg-[#131518] border border-white/[0.05] shadow-[inset_2px_2px_5px_rgba(0,0,0,0.6)] font-mono font-bold text-amber-400 text-xs">
+            <div className="px-3 py-1.5 rounded-xl bg-[#181d25] border border-white/[0.06] shadow-[inset_2px_2px_5px_rgba(0,0,0,0.5)] font-mono font-bold text-amber-400 text-xs">
               {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }).format(totalValor)}
             </div>
           </div>
@@ -271,11 +271,11 @@ export const TactileAnalyticsDashboard: React.FC<TactileAnalyticsDashboardProps>
                   className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                 />
                 {/* Degradê Escuro Suave nas Bordas para Integração Perfeita */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#15181c]/80 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#15181c]/40 via-transparent to-[#15181c]/40 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1d222a]/80 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#1d222a]/40 via-transparent to-[#1d222a]/40 pointer-events-none" />
 
                 {/* Badge Flutuante Tátil no Centro */}
-                <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between bg-[#121417]/85 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/[0.1] shadow-lg">
+                <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between bg-[#181d25]/85 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/[0.1] shadow-lg">
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(34,197,94,1)] animate-ping" />
                     <span className="text-[11px] font-bold text-white tracking-wide">

@@ -228,11 +228,11 @@ export const RadarBuscaEditais: React.FC<RadarBuscaEditaisProps> = ({
   };
 
   const kanbanColumns: { id: EtapaPipeline; label: string; countBadge: string; tone: string; headerBg: string }[] = [
-    { id: 'triagem', label: '1. Triagem (P1/P2)', countBadge: 'bg-sky-500/20 text-sky-300 border border-sky-500/30', tone: 'border-white/[0.08]', headerBg: 'bg-[#1a1e24]' },
-    { id: 'auditoria', label: '2. Auditoria & Riscos', countBadge: 'bg-amber-500/20 text-amber-300 border border-amber-500/30', tone: 'border-white/[0.08]', headerBg: 'bg-[#1a1e24]' },
-    { id: 'minuta_proposta', label: '3. Minutas & Proposta', countBadge: 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30', tone: 'border-white/[0.08]', headerBg: 'bg-[#1a1e24]' },
-    { id: 'sessao_disputa', label: '4. Sessão / Disputa', countBadge: 'bg-rose-500/20 text-rose-300 border border-rose-500/30', tone: 'border-white/[0.08]', headerBg: 'bg-[#1a1e24]' },
-    { id: 'homologado', label: '5. Homologado / Ganho', countBadge: 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30', tone: 'border-white/[0.08]', headerBg: 'bg-[#1a1e24]' },
+    { id: 'triagem', label: '1. Triagem (P1/P2)', countBadge: 'bg-sky-500/20 text-sky-300 border border-sky-500/30', tone: 'border-white/[0.08]', headerBg: 'bg-[#222834]' },
+    { id: 'auditoria', label: '2. Auditoria & Riscos', countBadge: 'bg-amber-500/20 text-amber-300 border border-amber-500/30', tone: 'border-white/[0.08]', headerBg: 'bg-[#222834]' },
+    { id: 'minuta_proposta', label: '3. Minutas & Proposta', countBadge: 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30', tone: 'border-white/[0.08]', headerBg: 'bg-[#222834]' },
+    { id: 'sessao_disputa', label: '4. Sessão / Disputa', countBadge: 'bg-rose-500/20 text-rose-300 border border-rose-500/30', tone: 'border-white/[0.08]', headerBg: 'bg-[#222834]' },
+    { id: 'homologado', label: '5. Homologado / Ganho', countBadge: 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30', tone: 'border-white/[0.08]', headerBg: 'bg-[#222834]' },
   ];
 
   return (
@@ -257,7 +257,7 @@ export const RadarBuscaEditais: React.FC<RadarBuscaEditaisProps> = ({
           </div>
 
           {/* Toggle Modo Lista vs Modo Pipeline Kanban em Cavidade Inset */}
-          <div className="inline-flex rounded-xl p-1 bg-[#121417] border border-white/[0.05] shadow-[inset_2px_2px_5px_rgba(0,0,0,0.6)] self-start sm:self-auto">
+          <div className="inline-flex rounded-xl p-1 bg-[#181d25] border border-white/[0.05] shadow-[inset_2px_2px_5px_rgba(0,0,0,0.6)] self-start sm:self-auto">
             <button
               onClick={() => setViewMode('list')}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
@@ -378,7 +378,7 @@ export const RadarBuscaEditais: React.FC<RadarBuscaEditaisProps> = ({
             <select
               value={selectedModalidade}
               onChange={(e) => setSelectedModalidade(e.target.value as ModalidadeLicitacao)}
-              className="w-full p-2.5 bg-[#14161a] border border-white/[0.06] rounded-xl text-slate-200 focus:outline-hidden focus:border-amber-500/50 shadow-[inset_2px_2px_5px_rgba(0,0,0,0.6)]"
+              className="w-full p-2.5 bg-[#1b2029] border border-white/[0.06] rounded-xl text-slate-200 focus:outline-hidden focus:border-amber-500/50 shadow-[inset_2px_2px_5px_rgba(0,0,0,0.6)]"
             >
               <option value="todas">Todas as Modalidades</option>
               <option value="dispensa_eletronica">Dispensas Eletrônicas (Art. 75)</option>
@@ -392,7 +392,7 @@ export const RadarBuscaEditais: React.FC<RadarBuscaEditaisProps> = ({
             <select
               value={selectedFaixaValor}
               onChange={(e) => setSelectedFaixaValor(e.target.value)}
-              className="w-full p-2.5 bg-[#14161a] border border-white/[0.06] rounded-xl text-slate-200 focus:outline-hidden focus:border-amber-500/50 shadow-[inset_2px_2px_5px_rgba(0,0,0,0.6)]"
+              className="w-full p-2.5 bg-[#1b2029] border border-white/[0.06] rounded-xl text-slate-200 focus:outline-hidden focus:border-amber-500/50 shadow-[inset_2px_2px_5px_rgba(0,0,0,0.6)]"
             >
               <option value="todas">Qualquer Valor</option>
               <option value="ate_50k">Até R$ 50.000 (Rápida)</option>
@@ -407,7 +407,7 @@ export const RadarBuscaEditais: React.FC<RadarBuscaEditaisProps> = ({
             <select
               value={selectedUf}
               onChange={(e) => setSelectedUf(e.target.value)}
-              className="w-full p-2.5 bg-[#14161a] border border-white/[0.06] rounded-xl text-slate-200 focus:outline-hidden focus:border-amber-500/50 shadow-[inset_2px_2px_5px_rgba(0,0,0,0.6)]"
+              className="w-full p-2.5 bg-[#1b2029] border border-white/[0.06] rounded-xl text-slate-200 focus:outline-hidden focus:border-amber-500/50 shadow-[inset_2px_2px_5px_rgba(0,0,0,0.6)]"
             >
               <option value="todas">Todo o Brasil</option>
               <option value="SP">São Paulo (SP)</option>
@@ -514,7 +514,7 @@ export const RadarBuscaEditais: React.FC<RadarBuscaEditaisProps> = ({
                             <select
                               value={tender.etapaPipeline}
                               onChange={(e) => handleMovePipeline(tender.id, e.target.value as EtapaPipeline)}
-                              className="text-[10px] bg-[#14161a] border border-white/[0.08] rounded p-1 text-slate-300 focus:outline-hidden"
+                              className="text-[10px] bg-[#1b2029] border border-white/[0.08] rounded p-1 text-slate-300 focus:outline-hidden"
                             >
                               <option value="triagem">➔ Triagem</option>
                               <option value="auditoria">➔ Auditoria</option>
@@ -566,7 +566,7 @@ export const RadarBuscaEditais: React.FC<RadarBuscaEditaisProps> = ({
                       }`}>
                         {tender.prioridade === 'P1' ? 'P1 · Alta Prioridade / Ouro' : 'P2 · Média Prioridade / Prata'}
                       </span>
-                      <span className="font-semibold text-slate-200 bg-[#16181d] px-2.5 py-1 rounded-lg text-[11px] border border-white/[0.06]">
+                      <span className="font-semibold text-slate-200 bg-[#1e2430] px-2.5 py-1 rounded-lg text-[11px] border border-white/[0.06]">
                         {tender.portal}
                       </span>
                       {tender.uasg && (
@@ -642,7 +642,7 @@ export const RadarBuscaEditais: React.FC<RadarBuscaEditaisProps> = ({
                         <select
                           value={tender.etapaPipeline}
                           onChange={(e) => handleMovePipeline(tender.id, e.target.value as EtapaPipeline)}
-                          className="text-[11px] bg-[#14161a] border border-white/[0.08] rounded p-1 text-slate-200 focus:outline-hidden"
+                          className="text-[11px] bg-[#1b2029] border border-white/[0.08] rounded p-1 text-slate-200 focus:outline-hidden"
                         >
                           <option value="triagem">Triagem</option>
                           <option value="auditoria">Auditoria</option>
@@ -689,7 +689,7 @@ export const RadarBuscaEditais: React.FC<RadarBuscaEditaisProps> = ({
                       <div className={`p-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 ${
                         tender.prazoUrgente
                           ? 'bg-amber-500/15 border border-amber-500/30 text-amber-300'
-                          : 'bg-[#181b20] border border-white/[0.05] text-slate-300'
+                          : 'bg-[#202530] border border-white/[0.05] text-slate-300'
                       }`}>
                         <Clock className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                         <span className="truncate">{tender.prazoRestante}</span>
@@ -749,7 +749,7 @@ export const RadarBuscaEditais: React.FC<RadarBuscaEditaisProps> = ({
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-md">
           <div className="tactile-card-raised border border-white/[0.09] shadow-2xl max-w-3xl w-full max-h-[90vh] flex flex-col overflow-hidden">
             {/* Modal Header */}
-            <div className="p-5 border-b border-white/[0.06] bg-[#16181d] flex items-center justify-between">
+            <div className="p-5 border-b border-white/[0.06] bg-[#1e2430] flex items-center justify-between">
               <div>
                 <div className="flex items-center gap-2">
                   <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md border ${
@@ -777,7 +777,7 @@ export const RadarBuscaEditais: React.FC<RadarBuscaEditaisProps> = ({
             </div>
 
             {/* Modal Tabs: Extrato, 14 Pontos e Prazos */}
-            <div className="px-5 py-2.5 bg-[#121418] border-b border-white/[0.05] flex flex-wrap items-center justify-between gap-3 text-xs">
+            <div className="px-5 py-2.5 bg-[#181d25] border-b border-white/[0.05] flex flex-wrap items-center justify-between gap-3 text-xs">
               <div className="flex items-center gap-1.5">
                 <button
                   onClick={() => setEditalViewTab('extrato')}
@@ -965,7 +965,7 @@ export const RadarBuscaEditais: React.FC<RadarBuscaEditaisProps> = ({
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-md">
           <div className="tactile-card-raised border border-white/[0.09] shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden">
             {/* Header */}
-            <div className="p-5 border-b border-white/[0.06] bg-[#16181d] flex items-center justify-between">
+            <div className="p-5 border-b border-white/[0.06] bg-[#1e2430] flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl tactile-btn flex items-center justify-center text-amber-400 font-bold">
                   <TrendingUp className="w-5 h-5" />
@@ -1136,14 +1136,14 @@ export const RadarBuscaEditais: React.FC<RadarBuscaEditaisProps> = ({
                   <span className="font-bold block text-xs">Parecer de Viabilidade Econômica:</span>
                   <span className="text-xs text-slate-200">{simulacaoFinanceira.parecerViabilidade}</span>
                 </div>
-                <span className="font-bold text-xs uppercase px-2.5 py-1 rounded-md bg-[#16181d] border border-current">
+                <span className="font-bold text-xs uppercase px-2.5 py-1 rounded-md bg-[#1e2430] border border-current">
                   {simulacaoFinanceira.statusViabilidade.toUpperCase()}
                 </span>
               </div>
             </div>
 
             {/* Footer */}
-            <div className="p-4 border-t border-white/[0.06] bg-[#16181d] flex items-center justify-end gap-2 text-xs">
+            <div className="p-4 border-t border-white/[0.06] bg-[#1e2430] flex items-center justify-end gap-2 text-xs">
               <button
                 onClick={() => setSelectedTenderForFinance(null)}
                 className="tactile-btn px-4 py-2 rounded-xl font-semibold text-slate-300 hover:text-white cursor-pointer"
