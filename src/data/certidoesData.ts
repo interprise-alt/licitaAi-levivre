@@ -1,21 +1,21 @@
 import { CertificateItem, CompanyProfile } from '../types/licitacao';
 
 export const INITIAL_COMPANY_PROFILE: CompanyProfile = {
-  razaoSocial: 'LEVIVRE VIAGENS E TURISMO LTDA',
-  nomeFantasia: 'Levivre Viagens',
-  cnpj: '12.345.678/0001-90',
-  cadastur: '19.012.345/0001-90',
+  razaoSocial: 'ROCHA ROMEIRO TURISMO LTDA',
+  nomeFantasia: 'LEVIVRE VIAGENS',
+  cnpj: '55.109.727/0001-01',
+  cadastur: '55.109.727/0001-01',
   iata: 'BR-960241',
   email: 'interprise@levivreviagens.com',
-  telefone: '(11) 4003-8820',
-  endereco: 'Avenida Paulista, nº 1842, Conjunto 112, Bela Vista',
-  cidade: 'São Paulo',
-  estado: 'SP',
-  cep: '01310-200',
-  representante: 'Diretoria de Operações Governamentais',
+  telefone: '31985442403',
+  endereco: 'Avenida Carlos Chagas, nº 157, Loja 1, Cidade Nobre',
+  cidade: 'Ipatinga',
+  estado: 'MG',
+  cep: '35162-359',
+  representante: 'Rocha Romeiro',
   cargoRepresentante: 'Sócio-Administrador',
-  cpfRepresentante: '000.123.456-78',
-  enquadramento: 'EPP',
+  cpfRepresentante: '',
+  enquadramento: 'ME',
 };
 
 export const OFFICIAL_CERTIFICATES: CertificateItem[] = [

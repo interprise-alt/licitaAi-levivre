@@ -41,20 +41,20 @@ export const generateCertidoesDossiePDF = (options: DossieOptions): jsPDF => {
   };
 
   const drawMiniHeader = () => {
-    doc.setFillColor(15, 23, 42); // slate-900
+    doc.setFillColor(38, 58, 86); // Azul Marinho Desbotado (Faded Navy)
     doc.rect(margin, currentY, contentWidth, 8, 'F');
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(8);
     doc.setTextColor(245, 158, 11); // amber-500
     doc.text('LEVIVRE VIAGENS', margin + 3, currentY + 5.5);
     doc.setFont('helvetica', 'normal');
-    doc.setTextColor(203, 213, 225);
+    doc.setTextColor(215, 228, 242);
     doc.text(`CNPJ: ${companyProfile.cnpj || '55.109.727/0001-01'} | Dossiê de Habilitação & Regularidade Fiscal`, margin + 38, currentY + 5.5);
     currentY += 12;
   };
 
   // HEADER PRINCIPAL
-  doc.setFillColor(15, 23, 42); // slate-900
+  doc.setFillColor(38, 58, 86); // Azul Marinho Desbotado (Faded Navy)
   doc.roundedRect(margin, currentY, contentWidth, 28, 2, 2, 'F');
 
   // Faixa dourada decorativa
@@ -250,13 +250,13 @@ export const generateCertidoesDossiePDF = (options: DossieOptions): jsPDF => {
   doc.setFontSize(7.5);
   doc.setTextColor(15, 23, 42);
   doc.text(
-    `${companyProfile.cidade || 'São Paulo'} - ${companyProfile.estado || 'SP'}, ${new Date().toLocaleDateString('pt-BR')}`,
+    `${companyProfile.cidade || 'Ipatinga'} - ${companyProfile.estado || 'MG'}, ${new Date().toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })}`,
     margin + 4,
     currentY + 28
   );
 
   doc.text(
-    `Representante Legal: ${companyProfile.representante || 'Diretoria de Operações Governamentais'} (CPF: ${companyProfile.cpfRepresentante || '***.***.***-**'})`,
+    `Representante Legal: ${companyProfile.representante || 'Rocha Romeiro'} (CPF: ${companyProfile.cpfRepresentante || '[CPF DO REPRESENTANTE]'})`,
     margin + 4,
     currentY + 33
   );
@@ -272,6 +272,122 @@ export const generateCertidoesDossiePDF = (options: DossieOptions): jsPDF => {
       `LicitaAI Engine · Levivre Viagens · Dossiê Gerado Automaticamente · Página ${i} de ${totalPages}`,
       pageWidth / 2,
       pageHeight - 6,
+      { align: 'center' }
+    );
+  }
+
+  return doc;
+};
+
+export interface MinutaPDFOptions {
+  docTitle: string;
+  documentContent: string;
+  companyProfile: CompanyProfile;
+  editalData?: any;
+}
+
+export const generateMinutaJuridicaPDF = (options: MinutaPDFOptions): jsPDF => {
+  const { docTitle, documentContent, companyProfile } = options;
+
+  const doc = new jsPDF({
+    orientation: 'portrait',
+    unit: 'mm',
+    format: 'a4',
+  });
+
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const margin = 16;
+  const contentWidth = pageWidth - margin * 2;
+  let currentY = 16;
+
+  const drawHeader = () => {
+    // Cabeçalho Timbrado Oficial em Azul Marinho Desbotado
+    doc.setFillColor(38, 58, 86); // Azul Marinho Desbotado / Faded Navy
+    doc.roundedRect(margin, currentY, contentWidth, 23, 2, 2, 'F');
+    doc.setFillColor(245, 158, 11); // amber-500
+    doc.rect(margin, currentY, 3, 23, 'F');
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11.5);
+    doc.setTextColor(255, 255, 255);
+    doc.text(companyProfile.razaoSocial || 'ROCHA ROMEIRO TURISMO LTDA', margin + 6, currentY + 6.5);
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8);
+    doc.setTextColor(215, 228, 242); // Texto suave azul-gelo
+    doc.text(
+      `Nome Fantasia: ${companyProfile.nomeFantasia || 'LEVIVRE VIAGENS'}   ·   CNPJ: ${companyProfile.cnpj || '55.109.727/0001-01'}   ·   CADASTUR: ${companyProfile.cadastur || '55.109.727/0001-01'}`,
+      margin + 6,
+      currentY + 12
+    );
+    doc.text(
+      `${companyProfile.endereco || 'Avenida Carlos Chagas, nº 157, Loja 1'} - ${companyProfile.cidade || 'Ipatinga'}/${companyProfile.estado || 'MG'}   ·   Tel: ${companyProfile.telefone || '31985442403'}`,
+      margin + 6,
+      currentY + 17.5
+    );
+
+    currentY += 28;
+  };
+
+  const drawMiniHeader = () => {
+    doc.setFillColor(236, 242, 250); // Soft Ice-blue tint
+    doc.rect(margin, currentY, contentWidth, 7, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7.5);
+    doc.setTextColor(38, 58, 86); // Azul Marinho Desbotado
+    doc.text(`${companyProfile.razaoSocial || 'ROCHA ROMEIRO TURISMO LTDA'} · ${docTitle}`, margin + 3, currentY + 4.8);
+    currentY += 11;
+  };
+
+  drawHeader();
+
+  // Escrever o texto da peça linha a linha
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9.5);
+  doc.setTextColor(15, 23, 42);
+
+  const lines = doc.splitTextToSize(documentContent, contentWidth);
+  const lineHeight = 5.2;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    if (currentY + lineHeight > pageHeight - 16) {
+      doc.addPage();
+      currentY = 16;
+      drawMiniHeader();
+    }
+
+    // Se for cabeçalho de PARTE ou TÍTULO
+    if (line.startsWith('PARTE ') || line.startsWith('ILUSTRÍSSIMO') || line.includes('IMPUGNAÇÃO') || line.includes('RECURSO') || line.includes('PEDIDO DE ESCLARECIMENTO')) {
+      doc.setFont('helvetica', 'bold');
+      if (line.startsWith('PARTE ')) {
+        doc.setTextColor(180, 83, 9); // amber-700
+        currentY += 1.5;
+      } else {
+        doc.setTextColor(15, 23, 42);
+      }
+    } else {
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(30, 41, 59);
+    }
+
+    doc.text(line, margin, currentY);
+    currentY += lineHeight;
+  }
+
+  // Numeração de páginas no rodapé limpo sem URL do navegador
+  const totalPages = doc.getNumberOfPages();
+  for (let p = 1; p <= totalPages; p++) {
+    doc.setPage(p);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7.5);
+    doc.setTextColor(148, 163, 184);
+    doc.text(
+      `Peça Oficial · ${companyProfile.razaoSocial || 'ROCHA ROMEIRO TURISMO LTDA'} · Lei Federal nº 14.133/2021 · Página ${p} de ${totalPages}`,
+      pageWidth / 2,
+      pageHeight - 8,
       { align: 'center' }
     );
   }

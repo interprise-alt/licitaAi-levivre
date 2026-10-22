@@ -255,28 +255,56 @@ app.post('/api/draft-document', async (req: Request, res: Response) => {
 
     const docNome = tipoDescricaoMap[tipo] || 'Peça Administrativa';
 
+    // Formatação de data e cidade/UF da empresa
+    const hoje = new Date();
+    const meses = [
+      'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
+      'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'
+    ];
+    const dataExtenso = `${hoje.getDate()} de ${meses[hoje.getMonth()]} de ${hoje.getFullYear()}`;
+    const cidadeUf = `${empresaData?.cidade || 'Ipatinga'} - ${empresaData?.estado || 'MG'}`;
+    const fechoLocalData = `${cidadeUf}, ${dataExtenso}`;
+    const cpfFormatado = empresaData?.cpfRepresentante?.trim() ? empresaData.cpfRepresentante.trim() : '[CPF DO REPRESENTANTE]';
+    const repNome = empresaData?.representante?.trim() || 'Rocha Romeiro';
+    const repCargo = empresaData?.cargoRepresentante?.trim() || 'Sócio-Administrador';
+
     if (ai) {
       try {
         const prompt = `Redija uma peça jurídica estruturada RIGOROSAMENTE nas seguintes 9 PARTES PADRONIZADAS:
-1. Endereçamento: Ao Ilustríssimo(a) Senhor(a) Pregoeiro(a) / Agente de Contratação / Presidente da Comissão.
-2. Qualificação da Empresa: LEVIVRE VIAGENS E TURISMO LTDA, CNPJ, CADASTUR nº 19.012.345/0001-90, EPP.
+1. Endereçamento: Ao Ilustríssimo(a) Senhor(a) Pregoeiro(a) / Agente de Contratação / Presidente da Comissão do órgão licitante (${editalData?.orgao || 'ÓRGÃO LICITANTE'}).
+2. Qualificação da Empresa: ${empresaData?.razaoSocial || 'ROCHA ROMEIRO TURISMO LTDA'} (${empresaData?.nomeFantasia || 'LEVIVRE VIAGENS'}), CNPJ sob nº ${empresaData?.cnpj || '55.109.727/0001-01'}, CADASTUR nº ${empresaData?.cadastur || '55.109.727/0001-01'}, enquadrada como ${empresaData?.enquadramento === 'EPP' ? 'Empresa de Pequeno Porte (EPP)' : 'Microempresa (ME)'}, com sede na ${empresaData?.endereco || 'Avenida Carlos Chagas, nº 157, Loja 1, Cidade Nobre'}, ${cidadeUf}, CEP ${empresaData?.cep || '35162-359'}, representada por seu ${repCargo.toLowerCase()}, ${repNome}, inscrito no CPF sob o nº ${cpfFormatado}.
 3. Tempestividade: Demonstração matemática e jurídica do cumprimento do prazo legal em dias úteis (Art. 164 ou 165 da Lei nº 14.133/2021).
 4. Dos Fatos: Exposição límpida, cronológica e sucinta dos fatos do certame.
 5. Do Direito: Fundamentação aprofundada na Lei nº 14.133/2021, Súmulas reais do TCU (ex: Súmula 272 sobre sede física, Súmula 263 sobre atestados) e princípios da competitividade e isonomia. PROIBIDO inventar leis ou acórdãos fictícios.
 6. Das Razões do Pedido / Impugnação: Análise minuciosa de cada ponto controvertido e comprovação técnica.
 7. Do Pedido Final: Requerimentos objetivos e numerados (conhecimento, provimento, retificação do edital ou manutenção da decisão).
-8. Campos para conferência destacados com colchetes: [DADO A REVISAR].
-9. Fecho formal: Local, data e assinatura do representante legal.
+8. Das Comunicações e Intimações: Requerimento formal para que as intimações e notificações sejam enviadas ao e-mail institucional (${empresaData?.email || 'interprise@levivreviagens.com'}) ou disponibilizadas no portal eletrônico do certame (${editalData?.portal || 'Portal Oficial de Compras'}). É TERMINANTEMENTE PROIBIDO colocar colchetes como "[Conferir dados...]" ou checklists de rascunho na peça final.
+9. Fecho formal e Assinatura com a cidade da empresa e data atual:
+   Termos em que,
+   Pede e espera deferimento.
+
+   ${fechoLocalData}.
+
+   ___________________________________________________
+   ${empresaData?.razaoSocial || 'ROCHA ROMEIRO TURISMO LTDA'}
+   ${repNome}
+   ${repCargo}
+   CPF: ${cpfFormatado}
+   CADASTUR Nº ${empresaData?.cadastur || '55.109.727/0001-01'}
 
 DADOS DO CERTAME:
 ${JSON.stringify(editalData || {}, null, 2)}
 
 DADOS DA EMPRESA:
-Razão Social: ${empresaData?.razaoSocial || 'LEVIVRE VIAGENS E TURISMO LTDA'}
-CNPJ: ${empresaData?.cnpj || '19.012.345/0001-90'}
-CADASTUR: ${empresaData?.cadastur || '19.012.345/0001-90 (Ministério do Turismo)'}
-Endereço: ${empresaData?.endereco || 'Av. Paulista, 1000 - São Paulo/SP'}
-Representante: ${empresaData?.representante || 'Diretor Responsável'}
+Razão Social: ${empresaData?.razaoSocial || 'ROCHA ROMEIRO TURISMO LTDA'}
+Nome Fantasia: ${empresaData?.nomeFantasia || 'LEVIVRE VIAGENS'}
+CNPJ: ${empresaData?.cnpj || '55.109.727/0001-01'}
+CADASTUR: ${empresaData?.cadastur || '55.109.727/0001-01 (Ministério do Turismo)'}
+Endereço: ${empresaData?.endereco || 'Avenida Carlos Chagas, nº 157, Loja 1, Cidade Nobre'}
+Cidade/UF: ${cidadeUf}
+Sócio Representante: ${repNome} (${repCargo})
+CPF do Sócio: ${cpfFormatado}
+Data Atual da Minuta: ${dataExtenso}
 
 MOTIVO ESPECÍFICO A ENFRENTAR:
 ${motivoCustomizado || 'Cláusula restritiva à ampla competitividade, exigência indevida de sede física ou esclarecimento sobre taxas de embarque e agenciamento.'}`;
@@ -304,7 +332,7 @@ ${motivoCustomizado || 'Cláusula restritiva à ampla competitividade, exigênci
       }
     }
 
-    // Minuta de contingência padronizada em 9 partes
+    // Minuta de contingência padronizada em 9 partes com dados automáticos preenchidos
     const defaultText = `PARTE 1 · ENDEREÇAMENTO
 ILUSTRÍSSIMO(A) SENHOR(A) PREGOEIRO(A) / AGENTE DE CONTRATAÇÃO
 ${editalData?.orgao || 'DO ÓRGÃO LICITANTE CONTRATANTE'}
@@ -312,7 +340,7 @@ PREGÃO ELETRÔNICO Nº ${editalData?.numeroEdital || '[Nº DO EDITAL]'}
 PROCESSO ADMINISTRATIVO Nº [NÚMERO DO PROCESSO]
 
 PARTE 2 · QUALIFICAÇÃO DA REQUERENTE
-${empresaData?.razaoSocial || 'LEVIVRE VIAGENS E TURISMO LTDA'}, pessoa jurídica de direito privado, inscrita no CNPJ sob o nº ${empresaData?.cnpj || '19.012.345/0001-90'}, devidamente cadastrada no CADASTUR sob o nº ${empresaData?.cadastur || '19.012.345/0001-90'}, enquadrada como Empresa de Pequeno Porte (EPP), com sede na ${empresaData?.endereco || '[ENDEREÇO DA EMPRESA]'}, neste ato representada por seu representante legal infra-assinado, vem, tempestiva e respeitosamente, com amparo no Artigo 164 da Lei Federal nº 14.133/2021, interpor a presente
+${empresaData?.razaoSocial || 'ROCHA ROMEIRO TURISMO LTDA'}, pessoa jurídica de direito privado, inscrita no CNPJ sob o nº ${empresaData?.cnpj || '55.109.727/0001-01'}, devidamente cadastrada no CADASTUR sob o nº ${empresaData?.cadastur || '55.109.727/0001-01'}, enquadrada como ${empresaData?.enquadramento === 'EPP' ? 'Empresa de Pequeno Porte (EPP)' : 'Microempresa (ME)'}, com sede na ${empresaData?.endereco || 'Avenida Carlos Chagas, nº 157, Loja 1, Cidade Nobre'}, ${cidadeUf}, CEP ${empresaData?.cep || '35162-359'}, neste ato representada por seu ${repCargo.toLowerCase()} infra-assinado, ${repNome}, inscrito no CPF sob o nº ${cpfFormatado}, vem, tempestiva e respeitosamente, com amparo no Artigo 164 da Lei Federal nº 14.133/2021, interpor a presente
 
 ${docNome.toUpperCase()}
 
@@ -346,22 +374,21 @@ a) Conheça da presente insurgência por preencher todos os pressupostos de admi
 b) Julgue TOTALMENTE PROCEDENTE o pedido, determinando a RETIFICAÇÃO do Edital para suprimir a exigência abusiva;
 c) Proceda à republicação do instrumento convocatório, com a reabertura do prazo legal para formulação de propostas, nos exatos termos do Artigo 55, § 1º da Lei nº 14.133/2021.
 
-PARTE 8 · DADOS COMPLEMENTARES A CONFERIR
-[Conferir dados do Órgão]: ${editalData?.orgao || '[NOME DO ÓRGÃO]'}
-[Conferir protocolo do Portal]: [Portal Compras.gov.br / PNCP / BLL / BB]
-[Conferir e-mail da Agência]: interprise@levivreviagens.com
+PARTE 8 · DAS COMUNICAÇÕES E INTIMAÇÕES PROCESSUAIS
+Requer-se que todas as comunicações, notificações e intimações oficiais referentes ao presente procedimento administrativo sejam encaminhadas ao endereço eletrônico institucional ${empresaData?.email || 'interprise@levivreviagens.com'} ou disponibilizadas diretamente no portal eletrônico oficial do certame (${editalData?.portal || 'Portal Oficial de Compras'}).
 
-PARTE 9 · FECHO E ASSINATURA
+PARTE 9 · DO FECHO E ASSINATURA
 Termos em que,
 Pede e espera deferimento.
 
-[CIDADE - UF], [DATA ATUAL].
+${fechoLocalData}.
 
 ___________________________________________________
-${empresaData?.razaoSocial || 'LEVIVRE VIAGENS E TURISMO LTDA'}
-${empresaData?.representante || '[NOME DO REPRESENTANTE LEGAL]'}
-CPF: [CPF DO REPRESENTANTE]
-CADASTUR Nº ${empresaData?.cadastur || '19.012.345/0001-90'}`;
+${empresaData?.razaoSocial || 'ROCHA ROMEIRO TURISMO LTDA'}
+${repNome}
+${repCargo}
+CPF: ${cpfFormatado}
+CADASTUR Nº ${empresaData?.cadastur || '55.109.727/0001-01'}`;
 
     return res.json({
       documentTitle: docNome,

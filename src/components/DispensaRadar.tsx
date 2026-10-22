@@ -95,8 +95,13 @@ Quantidade de Passageiros: ${passageirosNum}
 • Validade da cotação: 3 (três) dias úteis face à flutuação das companhias aéreas e hotelaria.
 • Atendimento 24/7 com suporte para remarcação e emergências.
 
-São Paulo, ${new Date().toLocaleDateString('pt-BR')}.
-${companyProfile.razaoSocial}`;
+${companyProfile.cidade || 'Ipatinga'} - ${companyProfile.estado || 'MG'}, ${new Date().toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })}.
+
+___________________________________________________
+${companyProfile.razaoSocial}
+${companyProfile.representante || 'Rocha Romeiro'}
+${companyProfile.cargoRepresentante ? `${companyProfile.cargoRepresentante}\n` : ''}CPF: ${companyProfile.cpfRepresentante || '[CPF DO REPRESENTANTE]'}
+CADASTUR Nº ${companyProfile.cadastur}`;
   };
 
   const handleCopy = () => {

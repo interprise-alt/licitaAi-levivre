@@ -24,8 +24,10 @@ import {
   UserCheck,
   Zap,
   CheckCircle2,
+  FileDown,
 } from 'lucide-react';
 import { EditalAnalysis, CompanyProfile, TipoDocumento, SimuladorJulgamento } from '../types/licitacao';
+import { generateMinutaJuridicaPDF } from '../utils/pdfGenerator';
 
 interface DocumentGeneratorProps {
   currentAnalysis: EditalAnalysis | null;
@@ -60,6 +62,44 @@ export const DocumentGenerator: React.FC<DocumentGeneratorProps> = ({
     }
   }, [initialType, initialMotivo]);
 
+  // Preencher dinamicamente Cidade, Estado, Data Atual por extenso e CPF do sócio representante
+  const fillDocumentProfileFields = (text: string, profile: CompanyProfile): string => {
+    if (!text) return '';
+    const hoje = new Date();
+    const meses = [
+      'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
+      'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'
+    ];
+    const dataExtenso = `${hoje.getDate()} de ${meses[hoje.getMonth()]} de ${hoje.getFullYear()}`;
+    const cidadeUf = `${profile.cidade || 'Ipatinga'} - ${profile.estado || 'MG'}`;
+    const localData = `${cidadeUf}, ${dataExtenso}`;
+    const cpfFormatado = profile.cpfRepresentante?.trim() ? profile.cpfRepresentante.trim() : '[CPF DO REPRESENTANTE]';
+    const repNome = profile.representante?.trim() || 'Rocha Romeiro';
+
+    let filled = text;
+    // Substituir local e data
+    filled = filled.replace(/\[CIDADE\s*-\s*UF\]\s*,\s*\[DATA\s*ATUAL\]/gi, localData);
+    filled = filled.replace(/\[CIDADE\s*-\s*UF\]/gi, cidadeUf);
+    filled = filled.replace(/\[DATA\s*ATUAL\]/gi, dataExtenso);
+    
+    // Substituir CPF
+    filled = filled.replace(/CPF:\s*\[CPF\s*DO\s*REPRESENTANTE\]/gi, `CPF: ${cpfFormatado}`);
+    filled = filled.replace(/\[CPF\s*DO\s*REPRESENTANTE\]/gi, cpfFormatado);
+    filled = filled.replace(/\[CPF\s*DO\s*SÓCIO\]/gi, cpfFormatado);
+    filled = filled.replace(/\[CPF\s*DO\s*SOCIO\]/gi, cpfFormatado);
+
+    // Substituir Representante Legal
+    filled = filled.replace(/\[NOME\s*DO\s*REPRESENTANTE\s*LEGAL\]/gi, repNome);
+    filled = filled.replace(/\[REPRESENTANTE\s*LEGAL\]/gi, repNome);
+
+    // Substituir e formalizar a PARTE 8 (removendo qualquer vestígio de checklist informal de conferência)
+    const clausulaComunicacoes = `PARTE 8 · DAS COMUNICAÇÕES E INTIMAÇÕES PROCESSUAIS\nRequer-se que todas as comunicações, notificações e intimações oficiais referentes ao presente procedimento administrativo sejam encaminhadas ao endereço eletrônico institucional ${profile.email || 'interprise@levivreviagens.com'} ou disponibilizadas diretamente no portal eletrônico oficial do certame.\n\n`;
+    filled = filled.replace(/PARTE 8[^\n]*\n(?:\[Conferir[^\n]*\n?)+/gi, clausulaComunicacoes);
+    filled = filled.replace(/PARTE 8 · DADOS COMPLEMENTARES A CONFERIR[\s\S]*?(?=PARTE 9)/gi, clausulaComunicacoes);
+
+    return filled;
+  };
+
   // Gerar peça padronizada em 9 partes
   const handleGenerateDraft = async (typeToGen?: TipoDocumento) => {
     const t = typeToGen || selectedType;
@@ -82,7 +122,7 @@ export const DocumentGenerator: React.FC<DocumentGeneratorProps> = ({
       }
 
       const data = await response.json();
-      setGeneratedDoc(data.content);
+      setGeneratedDoc(fillDocumentProfileFields(data.content, companyProfile));
       setDocTitle(data.documentTitle || 'Minuta Jurídica');
     } catch (err) {
       console.error(err);
@@ -90,6 +130,13 @@ export const DocumentGenerator: React.FC<DocumentGeneratorProps> = ({
       setIsGenerating(false);
     }
   };
+
+  // Atualizar automaticamente o documento se o usuário alterar CPF, Cidade ou Estado no perfil
+  useEffect(() => {
+    if (generatedDoc) {
+      setGeneratedDoc((prev) => fillDocumentProfileFields(prev, companyProfile));
+    }
+  }, [companyProfile.cpfRepresentante, companyProfile.cidade, companyProfile.estado, companyProfile.representante]);
 
   useEffect(() => {
     if (!generatedDoc) {
@@ -153,7 +200,7 @@ export const DocumentGenerator: React.FC<DocumentGeneratorProps> = ({
       }
 
       const data = await response.json();
-      setGeneratedDoc(data.updatedContent);
+      setGeneratedDoc(fillDocumentProfileFields(data.updatedContent, companyProfile));
       setBlindedPoints((prev) => Array.from(new Set([...prev, ...pontos])));
 
       // Atualizar o resultado da simulação para refletir o aumento imediato da probabilidade de êxito
@@ -206,25 +253,87 @@ export const DocumentGenerator: React.FC<DocumentGeneratorProps> = ({
     document.body.removeChild(a);
   };
 
+  // Baixar PDF Oficial Timbrado (sem artefatos de navegador como about:blank)
+  const handleDownloadPDF = () => {
+    if (!generatedDoc) return;
+    const doc = generateMinutaJuridicaPDF({
+      docTitle: docTitle || 'Minuta Jurídica Oficial',
+      documentContent: generatedDoc,
+      companyProfile,
+      editalData: currentAnalysis,
+    });
+    const fileName = `${selectedType}_${currentAnalysis?.numeroEdital || 'licitacao'}.pdf`.replace(/[\s/\\:]+/g, '_');
+    doc.save(fileName);
+  };
+
   const handlePrint = () => {
     const printWindow = window.open('', '_blank');
     if (printWindow) {
       printWindow.document.write(`
+        <!DOCTYPE html>
         <html>
           <head>
-            <title>${docTitle}</title>
+            <meta charset="utf-8" />
+            <title>${docTitle || 'Minuta Jurídica Oficial'}</title>
             <style>
-              body { font-family: 'Times New Roman', serif; line-height: 1.6; padding: 40px; color: #111; }
-              pre { white-space: pre-wrap; font-family: inherit; font-size: 13pt; }
+              @page {
+                size: A4 portrait;
+                margin: 15mm 15mm 15mm 15mm;
+              }
+              body {
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 11pt;
+                line-height: 1.6;
+                color: #000;
+                margin: 0;
+                padding: 0;
+              }
+              .timbre-header {
+                background-color: #263a56;
+                color: #ffffff;
+                border-radius: 4px;
+                border-left: 6px solid #f59e0b;
+                padding: 12px 16px;
+                margin-bottom: 22px;
+                text-align: left;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+              }
+              .timbre-header .empresa {
+                font-size: 12pt;
+                font-weight: bold;
+                letter-spacing: 0.5px;
+                color: #ffffff;
+              }
+              .timbre-header .dados {
+                font-size: 8.5pt;
+                color: #d7e4f2;
+                margin-top: 4px;
+              }
+              pre {
+                white-space: pre-wrap;
+                word-wrap: break-word;
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 11pt;
+                line-height: 1.6;
+                margin: 0;
+              }
             </style>
           </head>
           <body>
+            <div class="timbre-header">
+              <div class="empresa">${companyProfile.razaoSocial || 'ROCHA ROMEIRO TURISMO LTDA'} · ${companyProfile.nomeFantasia || 'LEVIVRE VIAGENS'}</div>
+              <div class="dados">CNPJ: ${companyProfile.cnpj || '55.109.727/0001-01'} · CADASTUR: ${companyProfile.cadastur || '55.109.727/0001-01'} · ${companyProfile.cidade || 'Ipatinga'}/${companyProfile.estado || 'MG'} · E-mail: ${companyProfile.email || 'interprise@levivreviagens.com'}</div>
+            </div>
             <pre>${generatedDoc}</pre>
           </body>
         </html>
       `);
       printWindow.document.close();
-      printWindow.print();
+      setTimeout(() => {
+        printWindow.focus();
+        printWindow.print();
+      }, 250);
     }
   };
 
@@ -380,6 +489,15 @@ export const DocumentGenerator: React.FC<DocumentGeneratorProps> = ({
             </button>
 
             <button
+              onClick={handleDownloadPDF}
+              className="tactile-btn-primary inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-white rounded-xl transition-all cursor-pointer shadow-lg"
+              title="Baixar PDF Oficial Timbrado da Levivre Viagens sem artefatos ou cabeçalhos do navegador, 100% pronto para o pregão/leilão"
+            >
+              <FileDown className="w-3.5 h-3.5 text-white" />
+              <span>Baixar PDF Timbrado</span>
+            </button>
+
+            <button
               onClick={handleCopy}
               className="tactile-btn inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-300 hover:text-white rounded-xl transition-colors cursor-pointer"
             >
@@ -398,6 +516,7 @@ export const DocumentGenerator: React.FC<DocumentGeneratorProps> = ({
             <button
               onClick={handlePrint}
               className="tactile-btn inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-300 hover:text-white rounded-xl transition-colors cursor-pointer"
+              title="Imprimir ou Salvar como PDF pelo navegador (Dica: desmarque 'Cabeçalhos e rodapés' em 'Mais definições')"
             >
               <Printer className="w-3.5 h-3.5 text-slate-400" />
               <span>Imprimir</span>

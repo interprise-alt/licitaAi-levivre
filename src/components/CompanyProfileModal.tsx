@@ -27,6 +27,19 @@ export const CompanyProfileModal: React.FC<CompanyProfileModalProps> = ({
     }));
   };
 
+  const handleCpfChange = (raw: string) => {
+    const digits = raw.replace(/\D/g, '').slice(0, 11);
+    let formatted = digits;
+    if (digits.length > 9) {
+      formatted = `${digits.slice(0, 3)}.${digits.slice(3, 6)}.${digits.slice(6, 9)}-${digits.slice(9, 11)}`;
+    } else if (digits.length > 6) {
+      formatted = `${digits.slice(0, 3)}.${digits.slice(3, 6)}.${digits.slice(6)}`;
+    } else if (digits.length > 3) {
+      formatted = `${digits.slice(0, 3)}.${digits.slice(3)}`;
+    }
+    handleChange('cpfRepresentante', formatted);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSaveProfile(formData);
@@ -170,6 +183,59 @@ export const CompanyProfileModal: React.FC<CompanyProfileModalProps> = ({
                 className="w-full p-2.5 tactile-well text-slate-200 focus:outline-hidden focus:border-amber-500/50"
                 required
               />
+            </div>
+          </div>
+
+          {/* SESSÃO: DADOS DO SÓCIO / REPRESENTANTE LEGAL */}
+          <div className="pt-3 pb-1 border-t border-white/[0.08]">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+              <span className="text-[10px] font-bold text-amber-300 uppercase tracking-widest">
+                Sócio / Representante Legal (Assinatura das Minutas & Peças)
+              </span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div>
+                <label className="block text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-1">
+                  Nome do Sócio / Representante:
+                </label>
+                <input
+                  type="text"
+                  value={formData.representante || ''}
+                  onChange={(e) => handleChange('representante', e.target.value)}
+                  className="w-full p-2.5 tactile-well text-slate-100 focus:outline-hidden focus:border-amber-500/50"
+                  placeholder="Ex: Rocha Romeiro"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-1">
+                  Cargo / Função:
+                </label>
+                <input
+                  type="text"
+                  value={formData.cargoRepresentante || ''}
+                  onChange={(e) => handleChange('cargoRepresentante', e.target.value)}
+                  className="w-full p-2.5 tactile-well text-slate-100 focus:outline-hidden focus:border-amber-500/50"
+                  placeholder="Ex: Sócio-Administrador"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[10px] font-bold text-amber-400 uppercase tracking-widest mb-1">
+                  CPF do Sócio Representante:
+                </label>
+                <input
+                  type="text"
+                  value={formData.cpfRepresentante || ''}
+                  onChange={(e) => handleCpfChange(e.target.value)}
+                  className="w-full p-2.5 tactile-well text-white font-mono focus:outline-hidden focus:border-amber-400 border border-amber-500/40 shadow-[0_0_12px_rgba(245,158,11,0.1)]"
+                  placeholder="000.000.000-00"
+                  maxLength={14}
+                  required
+                />
+              </div>
             </div>
           </div>
 

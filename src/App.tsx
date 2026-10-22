@@ -18,7 +18,11 @@ export default function App() {
     const saved = localStorage.getItem('licitaai_levivre_profile');
     if (saved) {
       try {
-        return JSON.parse(saved);
+        const parsed = JSON.parse(saved);
+        return {
+          ...INITIAL_COMPANY_PROFILE,
+          ...parsed,
+        };
       } catch (e) {
         // ignore
       }
