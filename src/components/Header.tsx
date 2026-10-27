@@ -8,8 +8,11 @@ import {
   Zap,
   ShieldCheck,
   PlusCircle,
+  Sun,
+  Moon,
+  Sliders,
 } from 'lucide-react';
-import { CompanyProfile } from '../types/licitacao';
+import { CompanyProfile, LuminosityMode } from '../types/licitacao';
 
 interface HeaderProps {
   activeTab: 'radar' | 'analisador' | 'documentos' | 'dispensas' | 'certidoes' | 'chat';
@@ -17,6 +20,8 @@ interface HeaderProps {
   onOpenProfile: () => void;
   onNewAnalysis: () => void;
   companyProfile: CompanyProfile;
+  luminosity: LuminosityMode;
+  setLuminosity: (mode: LuminosityMode) => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -25,6 +30,8 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenProfile,
   onNewAnalysis,
   companyProfile,
+  luminosity,
+  setLuminosity,
 }) => {
   const navItems = [
     {
@@ -84,7 +91,7 @@ export const Header: React.FC<HeaderProps> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-[#1a1f28]/95 backdrop-blur-md border-b border-white/[0.08] shadow-[0_4px_24px_rgba(0,0,0,0.45)]">
+    <header className="sticky top-0 z-50 app-header-bg backdrop-blur-md border-b border-white/[0.08] shadow-[0_4px_24px_rgba(0,0,0,0.35)]">
       <div className="w-full max-w-[1540px] mx-auto px-3 sm:px-5 lg:px-6">
         {/* Linha Superior: Logo Oficial da Levivre em Destaque, Título & Ações Principais */}
         <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-4 py-3 sm:py-4 min-h-[120px] sm:min-h-[150px]">
@@ -92,7 +99,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center gap-4 sm:gap-5 shrink-0">
             <button
               onClick={() => setActiveTab('radar')}
-              className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-2xl bg-[#141820] flex items-center justify-center shadow-[0_12px_36px_rgba(0,0,0,0.7),0_4px_12px_rgba(0,0,0,0.5)] hover:shadow-[0_18px_48px_rgba(0,0,0,0.85)] hover:scale-105 active:scale-95 transition-all group overflow-hidden p-1 sm:p-1.5 shrink-0 cursor-pointer border border-white/[0.06]"
+              className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-2xl bg-black/25 flex items-center justify-center shadow-[0_12px_36px_rgba(0,0,0,0.6),0_4px_12px_rgba(0,0,0,0.4)] hover:shadow-[0_18px_48px_rgba(0,0,0,0.75)] hover:scale-105 active:scale-95 transition-all group overflow-hidden p-1 sm:p-1.5 shrink-0 cursor-pointer border border-white/[0.08]"
               title="LICITAÇÃO INTELIGENTE — Levivre Viagens (Ir para o Radar)"
             >
               <img
@@ -126,16 +133,63 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
           </div>
 
-          {/* Barra de Ações Rápidas (Direita) */}
-          <div className="flex items-center gap-2 shrink-0">
+          {/* Barra de Ações Rápidas (Direita): Seletor de Luminosidade + Perfil + Nova Análise */}
+          <div className="flex items-center gap-2 shrink-0 flex-wrap sm:flex-nowrap justify-end">
+            {/* Seletor Tátil de Luminosidade (Mais Claro / Balanceado / Noturno) */}
+            <div
+              className="flex items-center p-1 rounded-xl bg-black/25 border border-white/10 shadow-[inset_1px_1px_3px_rgba(0,0,0,0.4)] text-xs"
+              title="Ajuste de Luminosidade da Interface: Mais Claro, Balanceado ou Noturno"
+            >
+              <button
+                type="button"
+                onClick={() => setLuminosity('mais_claro')}
+                className={`px-2 sm:px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
+                  luminosity === 'mais_claro'
+                    ? 'bg-amber-500 text-white shadow-[0_0_10px_rgba(245,158,11,0.5)] font-bold'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+                title="Modo Mais Claro: Ardósia luminosa, arejada e de alto contraste visual"
+              >
+                <Sun className="w-3.5 h-3.5" />
+                <span className="hidden xl:inline text-[11px]">Mais Claro</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setLuminosity('balanceado')}
+                className={`px-2 sm:px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
+                  luminosity === 'balanceado'
+                    ? 'bg-amber-500 text-white shadow-[0_0_10px_rgba(245,158,11,0.5)] font-bold'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+                title="Modo Balanceado: Grafite suave e elegante (Luminosidade moderada)"
+              >
+                <Sliders className="w-3.5 h-3.5" />
+                <span className="hidden xl:inline text-[11px]">Balanceado</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setLuminosity('noturno')}
+                className={`px-2 sm:px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
+                  luminosity === 'noturno'
+                    ? 'bg-amber-500 text-white shadow-[0_0_10px_rgba(245,158,11,0.5)] font-bold'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+                title="Modo Noturno: Escuro profundo clássico"
+              >
+                <Moon className="w-3.5 h-3.5" />
+                <span className="hidden xl:inline text-[11px]">Noturno</span>
+              </button>
+            </div>
+
             <button
               onClick={onOpenProfile}
               title={`Perfil Cadastral: ${companyProfile.razaoSocial}`}
-              className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium text-slate-200 hover:text-white tactile-btn rounded-xl transition-all whitespace-nowrap cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-slate-200 hover:text-white tactile-btn rounded-xl transition-all whitespace-nowrap cursor-pointer"
             >
               <Building2 className="w-3.5 h-3.5 text-slate-400" />
-              <span className="hidden sm:inline">Perfil da Empresa</span>
-              <span className="sm:hidden">Perfil</span>
+              <span className="hidden sm:inline">Perfil</span>
             </button>
 
             <button
@@ -143,7 +197,7 @@ export const Header: React.FC<HeaderProps> = ({
                 setActiveTab('analisador');
                 onNewAnalysis();
               }}
-              className="flex items-center gap-1.5 px-3.5 sm:px-4 py-2 text-xs font-bold text-white tactile-btn-primary rounded-xl cursor-pointer shadow-md"
+              className="flex items-center gap-1.5 px-3 sm:px-4 py-2 text-xs font-bold text-white tactile-btn-primary rounded-xl cursor-pointer shadow-md"
             >
               <PlusCircle className="w-4 h-4 text-white" />
               <span className="hidden sm:inline">Nova Análise</span>
@@ -153,7 +207,7 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Linha Dedicada de Navegação dos Módulos (Dock Tátil Neumórfico sem corte horizontal) */}
         <div className="pb-2.5 pt-1">
-          <nav className="w-full bg-[#101216] p-1 sm:p-1.5 rounded-2xl border border-white/[0.05] shadow-[inset_2px_2px_8px_rgba(0,0,0,0.7),inset_-1px_-1px_3px_rgba(255,255,255,0.02)]">
+          <nav className="w-full app-dock-bg p-1 sm:p-1.5 rounded-2xl border border-white/[0.06] shadow-[inset_2px_2px_8px_rgba(0,0,0,0.5),inset_-1px_-1px_3px_rgba(255,255,255,0.03)]">
             <div className="flex items-center justify-start xl:justify-between gap-1 sm:gap-1.5 overflow-x-auto scrollbar-none px-0.5">
               {navItems.map((item) => {
                 const Icon = item.icon;

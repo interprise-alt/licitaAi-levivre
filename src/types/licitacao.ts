@@ -192,7 +192,7 @@ export interface OpportunityTender {
   dataAbertura: string;
   prazoRestante: string;
   prazoUrgente: boolean;
-  portal: 'Compras.gov.br' | 'PNCP' | 'Licitações-e (BB)' | 'BLL Compras' | 'BEC-SP';
+  portal: 'Compras.gov.br' | 'PNCP' | 'Licitações-e (BB)' | 'BLL Compras' | 'BEC-SP' | 'Licitanet' | 'Portal de Compras Públicas' | 'BBMNet';
   uasg?: string;
   linkOficial: string;
   scoreAderenciaLevivre: number; // 0 a 100%
@@ -205,3 +205,5 @@ export interface OpportunityTender {
   criterios14Pontos?: Criterios14Pontos;
   cronogramaPrazos?: CronogramaPrazosLegais;
 }
+
+export type LuminosityMode = 'mais_claro' | 'balanceado' | 'noturno';

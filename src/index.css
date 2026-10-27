@@ -18,124 +18,260 @@
     --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
     --font-michael: 'MichaelFont', 'Plus Jakarta Sans', sans-serif;
+
+    /* ══════════════════════════════════════════════════════════════════════
+       TEMA BALANCEADO / GRAFITE LUMINOSO (PADRÃO - MAIS CLARO & AREJADO)
+       Elevação da luminosidade base: saída do preto puro para ardósia elegante
+       ══════════════════════════════════════════════════════════════════════ */
+    --bg-app: #1e2430;
+    --bg-app-gradient: radial-gradient(ellipse at 50% -10%, #2b3547 0%, #1a202c 100%);
+    --bg-shell: #242c3b;
+    --bg-header: rgba(36, 44, 59, 0.96);
+    --bg-dock: #1a212d;
+    --bg-dock-border: rgba(255, 255, 255, 0.08);
+    --bg-status-bar: #202735;
+    --bg-footer: #202735;
+    --bg-card-from: #313c4e;
+    --bg-card-to: #252e3d;
+    --bg-card-raised-from: #39465b;
+    --bg-card-raised-to: #2c3647;
+    --bg-well: #1c222c;
+    --bg-well-sm: #202734;
+    --bg-btn-from: #374355;
+    --bg-btn-to: #283240;
+    --bg-btn-hover-from: #425065;
+    --bg-btn-hover-to: #303b4b;
+    --border-shell: rgba(255, 255, 255, 0.12);
+    --border-card: rgba(255, 255, 255, 0.1);
+    --border-card-top: rgba(255, 255, 255, 0.22);
+    --border-card-left: rgba(255, 255, 255, 0.14);
+    --border-well: rgba(255, 255, 255, 0.08);
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --shadow-card: 8px 8px 22px rgba(0, 0, 0, 0.35), -4px -4px 14px rgba(255, 255, 255, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.14);
+    --shadow-well: inset 4px 4px 10px rgba(0, 0, 0, 0.45), inset -2px -2px 6px rgba(255, 255, 255, 0.05);
+  }
+
+  body.theme-luminosa {
+    /* ══════════════════════════════════════════════════════════════════════
+       TEMA MAIS CLARO / ARDÓSIA LUMINOSA (MÁXIMA CLARIDADE & CONFORTO VISUAL)
+       Cartões em ardósia nobre com alto contraste e luz ambiente suave
+       ══════════════════════════════════════════════════════════════════════ */
+    --bg-app: #283243;
+    --bg-app-gradient: radial-gradient(ellipse at 50% -10%, #3d4c64 0%, #242d3c 100%);
+    --bg-shell: #2f3a4e;
+    --bg-header: rgba(47, 58, 78, 0.97);
+    --bg-dock: #222b3a;
+    --bg-dock-border: rgba(255, 255, 255, 0.14);
+    --bg-status-bar: #293445;
+    --bg-footer: #293445;
+    --bg-card-from: #3d4a62;
+    --bg-card-to: #2f394c;
+    --bg-card-raised-from: #475773;
+    --bg-card-raised-to: #364359;
+    --bg-well: #232c3b;
+    --bg-well-sm: #283244;
+    --bg-btn-from: #46556f;
+    --bg-btn-to: #334054;
+    --bg-btn-hover-from: #526382;
+    --bg-btn-hover-to: #3c4b63;
+    --border-shell: rgba(255, 255, 255, 0.18);
+    --border-card: rgba(255, 255, 255, 0.15);
+    --border-card-top: rgba(255, 255, 255, 0.32);
+    --border-card-left: rgba(255, 255, 255, 0.2);
+    --border-well: rgba(255, 255, 255, 0.11);
+    --text-primary: #ffffff;
+    --text-secondary: #e2e8f0;
+    --text-muted: #cbd5e1;
+    --shadow-card: 8px 8px 24px rgba(0, 0, 0, 0.28), -4px -4px 14px rgba(255, 255, 255, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.22);
+    --shadow-well: inset 4px 4px 10px rgba(0, 0, 0, 0.32), inset -2px -2px 6px rgba(255, 255, 255, 0.07);
+  }
+
+  body.theme-noturno {
+    /* ══════════════════════════════════════════════════════════════════════
+       TEMA NOTURNO PROFUNDO (CLÁSSICO)
+       ══════════════════════════════════════════════════════════════════════ */
+    --bg-app: #16191f;
+    --bg-app-gradient: none;
+    --bg-shell: #1d222a;
+    --bg-header: rgba(26, 31, 40, 0.95);
+    --bg-dock: #101216;
+    --bg-dock-border: rgba(255, 255, 255, 0.05);
+    --bg-status-bar: #181d25;
+    --bg-footer: #181d25;
+    --bg-card-from: #282f3a;
+    --bg-card-to: #1e242d;
+    --bg-card-raised-from: #2e3643;
+    --bg-card-raised-to: #232933;
+    --bg-well: #171b22;
+    --bg-well-sm: #181d25;
+    --bg-btn-from: #2f3643;
+    --bg-btn-to: #222731;
+    --bg-btn-hover-from: #363e4d;
+    --bg-btn-hover-to: #272d38;
+    --border-shell: rgba(255, 255, 255, 0.08);
+    --border-card: rgba(255, 255, 255, 0.08);
+    --border-card-top: rgba(255, 255, 255, 0.16);
+    --border-card-left: rgba(255, 255, 255, 0.11);
+    --border-well: rgba(255, 255, 255, 0.06);
+    --text-primary: #e2e8f0;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --shadow-card: 8px 8px 22px rgba(0, 0, 0, 0.45), -5px -5px 15px rgba(255, 255, 255, 0.04), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    --shadow-well: inset 4px 4px 10px rgba(0, 0, 0, 0.55), inset -2px -2px 6px rgba(255, 255, 255, 0.035);
   }
 
   body {
     font-family: var(--font-sans);
-    background-color: #16191f;
-    color: #e2e8f0;
+    background: var(--bg-app-gradient);
+    background-color: var(--bg-app);
+    color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    transition: background 0.25s ease, background-color 0.25s ease, color 0.25s ease;
   }
 }
 
 /* ════════════════════════════════════════════════════════════════════════════
-   SISTEMA DE DESIGN TÁTIL / NEUMÓRFICO ESCURO REFINADO
-   Relevo suave, sombras duplas, concavidade, chanfros e destaques luminosos
+   CLASSES DINÂMICAS DE CONTAINER & ESTRUTURA
+   ════════════════════════════════════════════════════════════════════════════ */
+.app-container-bg {
+  background: var(--bg-app-gradient) !important;
+  background-color: var(--bg-app) !important;
+  transition: background 0.25s ease, background-color 0.25s ease;
+}
+
+.app-shell-bg {
+  background-color: var(--bg-shell) !important;
+  border-color: var(--border-shell) !important;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.app-header-bg {
+  background-color: var(--bg-header) !important;
+  border-color: var(--border-shell) !important;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.app-dock-bg {
+  background-color: var(--bg-dock) !important;
+  border-color: var(--bg-dock-border) !important;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.app-status-bar-bg {
+  background-color: var(--bg-status-bar) !important;
+  border-color: var(--border-shell) !important;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.app-footer-bg {
+  background-color: var(--bg-footer) !important;
+  border-color: var(--border-shell) !important;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   SISTEMA DE DESIGN TÁTIL / NEUMÓRFICO REFINADO & LUMINOSO
    ════════════════════════════════════════════════════════════════════════════ */
 
 /* Chassi Externo do Dashboard */
 .tactile-shell {
-  background-color: #1d222a;
+  background-color: var(--bg-shell);
   border-radius: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-shell);
   box-shadow: 
-    0 25px 60px -15px rgba(0, 0, 0, 0.7),
-    0 0 0 1px rgba(255, 255, 255, 0.06),
-    inset 0 1px 2px rgba(255, 255, 255, 0.12);
+    0 25px 60px -15px rgba(0, 0, 0, 0.45),
+    0 0 0 1px var(--border-shell),
+    inset 0 1px 2px rgba(255, 255, 255, 0.15);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 /* Cartões em Relevo Tátil (Extrusão Suave / Bevel) */
 .tactile-card {
-  background: linear-gradient(145deg, #282f3a 0%, #1e242d 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-top-color: rgba(255, 255, 255, 0.16);
-  border-left-color: rgba(255, 255, 255, 0.11);
+  background: linear-gradient(145deg, var(--bg-card-from) 0%, var(--bg-card-to) 100%);
+  border: 1px solid var(--border-card);
+  border-top-color: var(--border-card-top);
+  border-left-color: var(--border-card-left);
   border-radius: 1.5rem;
-  box-shadow: 
-    8px 8px 22px rgba(0, 0, 0, 0.45),
-    -5px -5px 15px rgba(255, 255, 255, 0.04),
-    inset 0 1px 1px rgba(255, 255, 255, 0.1);
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, background 0.25s ease;
 }
 
 .tactile-card-raised {
-  background: linear-gradient(145deg, #2e3643 0%, #232933 100%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-top-color: rgba(255, 255, 255, 0.2);
-  border-left-color: rgba(255, 255, 255, 0.13);
+  background: linear-gradient(145deg, var(--bg-card-raised-from) 0%, var(--bg-card-raised-to) 100%);
+  border: 1px solid var(--border-card);
+  border-top-color: var(--border-card-top);
+  border-left-color: var(--border-card-left);
   border-radius: 1.5rem;
-  box-shadow: 
-    12px 12px 28px rgba(0, 0, 0, 0.55),
-    -7px -7px 18px rgba(255, 255, 255, 0.05),
-    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, background 0.25s ease;
 }
 
 .tactile-card-hover:hover {
   transform: translateY(-2px);
   box-shadow: 
-    10px 10px 26px rgba(0, 0, 0, 0.55),
-    -6px -6px 18px rgba(255, 255, 255, 0.055),
-    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    10px 10px 26px rgba(0, 0, 0, 0.45),
+    -6px -6px 18px rgba(255, 255, 255, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
 }
 
 /* Cavidade / Poço Recuado (Concave Well / Inset) para Inputs, Gráficos e Tabelas */
 .tactile-well {
-  background: #171b22;
+  background: var(--bg-well);
   border-radius: 1.25rem;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-bottom-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 
-    inset 4px 4px 10px rgba(0, 0, 0, 0.55),
-    inset -2px -2px 6px rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--border-well);
+  border-bottom-color: var(--border-card-top);
+  box-shadow: var(--shadow-well);
+  transition: background 0.25s ease, border-color 0.25s ease;
 }
 
 .tactile-well-sm {
-  background: #181d25;
+  background: var(--bg-well-sm);
   border-radius: 0.875rem;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 
-    inset 3px 3px 7px rgba(0, 0, 0, 0.5),
-    inset -1px -1px 4px rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--border-well);
+  box-shadow: var(--shadow-well);
+  transition: background 0.25s ease, border-color 0.25s ease;
 }
 
 /* Botões Táteis com Feedback Físico (Pressionamento) */
 .tactile-btn {
-  background: linear-gradient(145deg, #2f3643 0%, #222731 100%);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-top-color: rgba(255, 255, 255, 0.18);
+  background: linear-gradient(145deg, var(--bg-btn-from) 0%, var(--bg-btn-to) 100%);
+  border: 1px solid var(--border-card);
+  border-top-color: var(--border-card-top);
   border-radius: 1rem;
-  color: #e2e8f0;
+  color: var(--text-primary);
   box-shadow: 
-    5px 5px 14px rgba(0, 0, 0, 0.4),
-    -3px -3px 8px rgba(255, 255, 255, 0.045),
-    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    5px 5px 14px rgba(0, 0, 0, 0.35),
+    -3px -3px 8px rgba(255, 255, 255, 0.05),
+    inset 0 1px 1px rgba(255, 255, 255, 0.12);
   transition: all 0.15s ease-out;
 }
 
 .tactile-btn:hover {
-  background: linear-gradient(145deg, #363e4d 0%, #272d38 100%);
+  background: linear-gradient(145deg, var(--bg-btn-hover-from) 0%, var(--bg-btn-hover-to) 100%);
   color: #ffffff;
 }
 
 .tactile-btn:active {
   transform: translateY(1px) scale(0.99);
   box-shadow: 
-    inset 3px 3px 7px rgba(0, 0, 0, 0.6),
+    inset 3px 3px 7px rgba(0, 0, 0, 0.5),
     inset -1px -1px 3px rgba(255, 255, 255, 0.05);
 }
 
-/* Botão Tátil Primário - Laranja / Âmbar Quente Vibrante (como na referência) */
+/* Botão Tátil Primário - Laranja / Âmbar Quente Vibrante */
 .tactile-btn-primary {
   background: linear-gradient(135deg, #ff7b2b 0%, #ff4b1f 100%);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 1rem;
   color: #ffffff;
   font-weight: 600;
   box-shadow: 
     0 6px 20px rgba(255, 75, 31, 0.4),
-    4px 4px 12px rgba(0, 0, 0, 0.4),
-    inset 0 1px 2px rgba(255, 255, 255, 0.4);
+    4px 4px 12px rgba(0, 0, 0, 0.35),
+    inset 0 1px 2px rgba(255, 255, 255, 0.45);
   transition: all 0.15s ease-out;
 }
 
@@ -143,7 +279,7 @@
   background: linear-gradient(135deg, #ff8c3a 0%, #ff5722 100%);
   box-shadow: 
     0 8px 24px rgba(255, 75, 31, 0.55),
-    inset 0 1px 2px rgba(255, 255, 255, 0.5);
+    inset 0 1px 2px rgba(255, 255, 255, 0.55);
 }
 
 .tactile-btn-primary:active {
@@ -153,17 +289,17 @@
     0 2px 10px rgba(255, 75, 31, 0.3);
 }
 
-/* Botão Tátil Esmeralda / Neon Green */
+/* Botão Tátil Esmeralda */
 .tactile-btn-emerald {
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 1rem;
   color: #ffffff;
   font-weight: 600;
   box-shadow: 
     0 6px 20px rgba(16, 185, 129, 0.35),
-    4px 4px 12px rgba(0, 0, 0, 0.4),
-    inset 0 1px 2px rgba(255, 255, 255, 0.35);
+    4px 4px 12px rgba(0, 0, 0, 0.35),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4);
   transition: all 0.15s ease-out;
 }
 
@@ -174,42 +310,71 @@
     inset 0 1px 2px rgba(255, 255, 255, 0.45);
 }
 
-/* Botão Tátil de Navegação / Tab Ativa (com Efeito Inset / Recuado) */
+/* Botão Tátil de Navegação / Tab Ativa */
 .tactile-tab-active {
-  background: #181d25 !important;
+  background: var(--bg-well-sm) !important;
   color: #ff9800 !important;
-  border-color: rgba(255, 152, 0, 0.35) !important;
+  border-color: rgba(255, 152, 0, 0.45) !important;
   box-shadow: 
-    inset 3px 3px 7px rgba(0, 0, 0, 0.55),
-    inset -1px -1px 3px rgba(255, 255, 255, 0.05),
-    0 0 12px rgba(255, 152, 0, 0.18) !important;
+    inset 3px 3px 7px rgba(0, 0, 0, 0.45),
+    inset -1px -1px 3px rgba(255, 255, 255, 0.08),
+    0 0 14px rgba(255, 152, 0, 0.22) !important;
 }
 
 /* Mostrador Circular (Donut Gauge 3D / Dial Knob) */
 .tactile-dial-ring {
   box-shadow: 
-    6px 6px 16px rgba(0, 0, 0, 0.5),
-    -4px -4px 10px rgba(255, 255, 255, 0.04);
+    6px 6px 16px rgba(0, 0, 0, 0.4),
+    -4px -4px 10px rgba(255, 255, 255, 0.06);
 }
 
 .tactile-dial-knob {
-  background: linear-gradient(145deg, #2e3542 0%, #20242e 100%);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: linear-gradient(145deg, var(--bg-card-from) 0%, var(--bg-card-to) 100%);
+  border: 1px solid var(--border-card);
   box-shadow: 
-    4px 4px 10px rgba(0, 0, 0, 0.4),
-    -2px -2px 6px rgba(255, 255, 255, 0.04),
-    inset 0 1px 1px rgba(255, 255, 255, 0.12);
+    4px 4px 10px rgba(0, 0, 0, 0.35),
+    -2px -2px 6px rgba(255, 255, 255, 0.06),
+    inset 0 1px 1px rgba(255, 255, 255, 0.16);
 }
 
-/* Barras Cilíndricas Verticais Coloridas (Gradientes da Imagem) */
+/* Barras Cilíndricas Verticais Coloridas */
 .bar-gradient-orange {
   background: linear-gradient(180deg, #facc15 0%, #ff8c3a 35%, #ff4b1f 85%, #dc2626 100%);
-  box-shadow: 0 0 12px rgba(255, 100, 30, 0.35);
+  box-shadow: 0 0 14px rgba(255, 100, 30, 0.4);
 }
 
 .bar-gradient-emerald {
   background: linear-gradient(180deg, #a3e635 0%, #34d399 40%, #10b981 85%, #047857 100%);
-  box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.4);
+}
+
+/* Clareamento adaptativo dos seletores, inputs e poços táteis */
+.bg-\[\#16191f\] {
+  background-color: var(--bg-app) !important;
+}
+
+.bg-\[\#1b2029\],
+.bg-\[\#161920\],
+.bg-\[\#171b22\],
+.bg-\[\#1a1d22\] {
+  background-color: var(--bg-well) !important;
+}
+
+.bg-\[\#181d25\],
+.bg-\[\#191d24\],
+.bg-\[\#1e2430\],
+.bg-\[\#202530\],
+.bg-\[\#222834\],
+.bg-\[\#23272e\] {
+  background-color: var(--bg-well-sm) !important;
+}
+
+.bg-\[\#101216\] {
+  background-color: var(--bg-dock) !important;
+}
+
+.bg-\[\#1a1f28\] {
+  background-color: var(--bg-header) !important;
 }
 
 /* Custom Scrollbars Elegantes para Tema Tátil */
@@ -218,15 +383,15 @@
   height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #161920;
+  background: var(--bg-app);
 }
 ::-webkit-scrollbar-thumb {
-  background: #2d3442;
+  background: var(--bg-btn-from);
   border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-well);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3c4658;
+  background: var(--bg-btn-hover-from);
 }
 
 /* Compatibilidade com Impressão */

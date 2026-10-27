@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { RadarBuscaEditais } from './components/RadarBuscaEditais';
 import { EditalAnalyzer } from './components/EditalAnalyzer';
@@ -9,9 +9,29 @@ import { ChatCoPilot } from './components/ChatCoPilot';
 import { CompanyProfileModal } from './components/CompanyProfileModal';
 import { SAMPLE_EDITAIS } from './data/sampleEditais';
 import { INITIAL_COMPANY_PROFILE } from './data/certidoesData';
-import { EditalAnalysis, CompanyProfile, TipoDocumento, OpportunityTender } from './types/licitacao';
+import { EditalAnalysis, CompanyProfile, TipoDocumento, OpportunityTender, LuminosityMode } from './types/licitacao';
 
 export default function App() {
+  const [luminosity, setLuminosity] = useState<LuminosityMode>(() => {
+    const saved = localStorage.getItem('licitaai_luminosity');
+    if (saved === 'mais_claro' || saved === 'balanceado' || saved === 'noturno') {
+      return saved;
+    }
+    return 'mais_claro'; // Ativa por padrão o modo Mais Claro solicitado pelo usuário
+  });
+
+  useEffect(() => {
+    document.body.classList.remove('theme-luminosa', 'theme-balanceado', 'theme-noturno');
+    if (luminosity === 'mais_claro') {
+      document.body.classList.add('theme-luminosa');
+    } else if (luminosity === 'noturno') {
+      document.body.classList.add('theme-noturno');
+    } else {
+      document.body.classList.add('theme-balanceado');
+    }
+    localStorage.setItem('licitaai_luminosity', luminosity);
+  }, [luminosity]);
+
   const [activeTab, setActiveTab] = useState<'radar' | 'analisador' | 'documentos' | 'dispensas' | 'certidoes' | 'chat'>('radar');
   const [currentAnalysis, setCurrentAnalysis] = useState<EditalAnalysis>(SAMPLE_EDITAIS[0]);
   const [companyProfile, setCompanyProfile] = useState<CompanyProfile>(() => {
@@ -127,20 +147,22 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#16191f] text-slate-100 flex flex-col font-sans p-2 sm:p-4 lg:p-6 selection:bg-amber-500/30 selection:text-amber-200">
-      {/* Chassis Principal com acabamento tátil neumórfico externo (inspirado no UI.jfif) */}
-      <div className="tactile-shell max-w-[1540px] w-full mx-auto flex flex-col min-h-[96vh] overflow-hidden border border-white/[0.08]">
-        {/* Top Header estritamente remodelado com tema tátil */}
+    <div className="min-h-screen app-container-bg text-slate-100 flex flex-col font-sans p-2 sm:p-4 lg:p-6 selection:bg-amber-500/30 selection:text-amber-200">
+      {/* Chassis Principal com acabamento tátil neumórfico externo com suporte a luminosidade */}
+      <div className="tactile-shell app-shell-bg max-w-[1540px] w-full mx-auto flex flex-col min-h-[96vh] overflow-hidden">
+        {/* Top Header estritamente remodelado com tema tátil e seletor de claridade */}
         <Header
           activeTab={activeTab}
           setActiveTab={setActiveTab}
           onOpenProfile={() => setIsProfileOpen(true)}
           onNewAnalysis={handleNewAnalysis}
           companyProfile={companyProfile}
+          luminosity={luminosity}
+          setLuminosity={setLuminosity}
         />
 
         {/* Barra de Status & Confiança (Cavidade Tátil com Destaques Luminosos) */}
-        <div className="bg-[#181d25] border-b border-white/[0.05] text-[11px] text-slate-400 py-2 px-4 sm:px-6 lg:px-8">
+        <div className="app-status-bar-bg border-b border-white/[0.06] text-[11px] text-slate-400 py-2 px-4 sm:px-6 lg:px-8">
           <div className="max-w-[1540px] mx-auto flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-2 flex-wrap">
               <span className="font-semibold text-slate-200 flex items-center gap-1.5">
@@ -211,8 +233,8 @@ export default function App() {
         )}
       </main>
 
-        {/* Rodapé Tátil Escuro Refinado */}
-        <footer className="bg-[#181d25] border-t border-white/[0.06] mt-auto">
+        {/* Rodapé Tátil com Suporte a Luminosidade */}
+        <footer className="app-footer-bg border-t border-white/[0.06] mt-auto">
           <div className="max-w-[1540px] mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]"></span>

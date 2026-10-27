@@ -853,7 +853,9 @@ export const SicafCertidoes: React.FC<SicafCertidoesProps> = ({ companyProfile =
                   <div className="pt-1">
                     <input
                       type="file"
-                      ref={(el) => (fileInputRefs.current[cert.id] = el)}
+                      ref={(el) => {
+                        fileInputRefs.current[cert.id] = el;
+                      }}
                       accept=".pdf,image/png,image/jpeg,image/webp"
                       className="hidden"
                       onChange={(e) => handleFileUpload(cert.id, e)}
