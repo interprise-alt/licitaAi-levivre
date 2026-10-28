@@ -40,6 +40,7 @@ import {
   Target,
   ChevronRight,
   UserCheck,
+  Globe,
 } from 'lucide-react';
 import { OpportunityTender, NichoTurismo, ModalidadeLicitacao, FinancialSimulation, EtapaPipeline } from '../types/licitacao';
 import { OPPORTUNITY_TENDERS } from '../data/radarEditaisData';
@@ -65,6 +66,7 @@ export const RadarBuscaEditais: React.FC<RadarBuscaEditaisProps> = ({
   const [selectedPrioridade, setSelectedPrioridade] = useState<'todas' | 'P1' | 'P2'>('todas');
   const [selectedFaixaValor, setSelectedFaixaValor] = useState<string>('todas');
   const [selectedUf, setSelectedUf] = useState<string>('todas');
+  const [selectedPortal, setSelectedPortal] = useState<string>('todos');
   const [onlyUrgente, setOnlyUrgente] = useState<boolean>(false);
   const [sortBy, setSortBy] = useState<'aderencia' | 'valor_desc' | 'valor_asc' | 'urgencia'>('aderencia');
   const [showAnalyticsPanel, setShowAnalyticsPanel] = useState<boolean>(true);
@@ -110,6 +112,7 @@ export const RadarBuscaEditais: React.FC<RadarBuscaEditaisProps> = ({
       if (selectedModalidade !== 'todas' && tender.modalidadeKey !== selectedModalidade) return false;
       if (selectedPrioridade !== 'todas' && tender.prioridade !== selectedPrioridade) return false;
       if (selectedUf !== 'todas' && tender.estadoUf !== selectedUf) return false;
+      if (selectedPortal !== 'todos' && tender.portal !== selectedPortal) return false;
       if (onlyUrgente && !tender.prazoUrgente) return false;
 
       if (selectedFaixaValor === 'ate_50k' && tender.valorEstimadoNum > 50000) return false;
@@ -125,7 +128,7 @@ export const RadarBuscaEditais: React.FC<RadarBuscaEditaisProps> = ({
       if (sortBy === 'urgencia') return (b.prazoUrgente ? 1 : 0) - (a.prazoUrgente ? 1 : 0);
       return 0;
     });
-  }, [tendersList, searchTerm, selectedNicho, selectedModalidade, selectedPrioridade, selectedFaixaValor, selectedUf, onlyUrgente, sortBy]);
+  }, [tendersList, searchTerm, selectedNicho, selectedModalidade, selectedPrioridade, selectedFaixaValor, selectedUf, selectedPortal, onlyUrgente, sortBy]);
 
   // Estatísticas e Métricas para Gráficos Visuais
   const analyticsData = useMemo(() => {
@@ -148,10 +151,11 @@ export const RadarBuscaEditais: React.FC<RadarBuscaEditaisProps> = ({
     });
 
     const portaisDistrib = [
-      { portal: 'Compras.gov.br', count: 0, tone: 'bg-sky-100 text-sky-800' },
-      { portal: 'PNCP', count: 0, tone: 'bg-emerald-100 text-emerald-800' },
-      { portal: 'Licitações-e (BB)', count: 0, tone: 'bg-amber-100 text-amber-800' },
-      { portal: 'BLL Compras', count: 0, tone: 'bg-purple-100 text-purple-800' },
+      { portal: 'Compras.gov.br', count: 0, tone: 'bg-sky-500/20 text-sky-300 border border-sky-500/30' },
+      { portal: 'Licitanet', count: 0, tone: 'bg-amber-500/20 text-amber-300 border border-amber-500/40' },
+      { portal: 'PNCP', count: 0, tone: 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' },
+      { portal: 'Licitações-e (BB)', count: 0, tone: 'bg-blue-500/20 text-blue-300 border border-blue-500/30' },
+      { portal: 'BLL Compras', count: 0, tone: 'bg-purple-500/20 text-purple-300 border border-purple-500/30' },
     ];
 
     tendersList.forEach((t) => {
@@ -369,10 +373,52 @@ export const RadarBuscaEditais: React.FC<RadarBuscaEditaisProps> = ({
               })}
             </div>
           </div>
+
+          {/* Segmento de Portais / Fontes de Editais */}
+          <div>
+            <div className="flex items-center justify-between mb-1.5">
+              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                Portal de Disputa / Fonte do Edital:
+              </label>
+              <span className="text-[10px] text-amber-400 font-semibold flex items-center gap-1">
+                <Globe className="w-3 h-3" />
+                <span>Multi-Fontes Ativo</span>
+              </span>
+            </div>
+            <div className="flex flex-wrap gap-2 text-xs">
+              {[
+                { id: 'todos', label: 'Todos os Portais', count: tendersList.length },
+                { id: 'Licitanet', label: 'Licitanet (licitanet.com.br)', count: tendersList.filter(t => t.portal === 'Licitanet').length },
+                { id: 'Compras.gov.br', label: 'Compras.gov.br (Federal)', count: tendersList.filter(t => t.portal === 'Compras.gov.br').length },
+                { id: 'PNCP', label: 'PNCP (Nacional)', count: tendersList.filter(t => t.portal === 'PNCP').length },
+                { id: 'BLL Compras', label: 'BLL Compras', count: tendersList.filter(t => t.portal === 'BLL Compras').length },
+                { id: 'Licitações-e (BB)', label: 'Licitações-e (BB)', count: tendersList.filter(t => t.portal === 'Licitações-e (BB)').length },
+              ].map((portalItem) => {
+                const isSelected = selectedPortal === portalItem.id;
+                return (
+                  <button
+                    key={portalItem.id}
+                    onClick={() => setSelectedPortal(portalItem.id)}
+                    className={`px-3 py-1.5 text-xs font-semibold rounded-xl transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer ${
+                      isSelected
+                        ? 'tactile-tab-active font-bold text-amber-300'
+                        : 'tactile-btn text-slate-300 hover:text-white'
+                    }`}
+                  >
+                    <Globe className={`w-3.5 h-3.5 ${isSelected ? 'text-amber-400' : 'text-slate-400'}`} />
+                    <span>{portalItem.label}</span>
+                    <span className="text-[10px] px-1.5 py-0.2 rounded-md bg-white/10 font-mono text-slate-300">
+                      {portalItem.count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
 
         {/* Linha de Filtros de Dropdown Táteis */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1 text-xs">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 pt-1 text-xs">
           <div>
             <label className="block font-semibold text-slate-300 mb-1">Modalidade Legal:</label>
             <select
@@ -416,6 +462,22 @@ export const RadarBuscaEditais: React.FC<RadarBuscaEditaisProps> = ({
               <option value="PR">Paraná (PR)</option>
               <option value="DF">Distrito Federal (DF)</option>
               <option value="BA">Bahia (BA)</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block font-semibold text-slate-300 mb-1">Portal da Disputa:</label>
+            <select
+              value={selectedPortal}
+              onChange={(e) => setSelectedPortal(e.target.value)}
+              className="w-full p-2.5 bg-[#1b2029] border border-white/[0.06] rounded-xl text-slate-200 focus:outline-hidden focus:border-amber-500/50 shadow-[inset_2px_2px_5px_rgba(0,0,0,0.6)]"
+            >
+              <option value="todos">Todos os Portais</option>
+              <option value="Licitanet">Licitanet (licitanet.com.br)</option>
+              <option value="Compras.gov.br">Compras.gov.br</option>
+              <option value="PNCP">PNCP</option>
+              <option value="BLL Compras">BLL Compras</option>
+              <option value="Licitações-e (BB)">Licitações-e (BB)</option>
             </select>
           </div>
 
