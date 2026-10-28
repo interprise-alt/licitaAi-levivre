@@ -10,6 +10,7 @@ import { CompanyProfileModal } from './components/CompanyProfileModal';
 import { SAMPLE_EDITAIS } from './data/sampleEditais';
 import { INITIAL_COMPANY_PROFILE } from './data/certidoesData';
 import { EditalAnalysis, CompanyProfile, TipoDocumento, OpportunityTender, LuminosityMode } from './types/licitacao';
+import { Sparkles } from 'lucide-react';
 
 export default function App() {
   const [luminosity, setLuminosity] = useState<LuminosityMode>(() => {
@@ -245,6 +246,18 @@ export default function App() {
               <span aria-hidden="true" className="text-slate-600">·</span>
               <span className="text-amber-400/90 font-medium">Levivre Viagens e Turismo</span>
             </div>
+          </div>
+          {/* Signature / Author Credit */}
+          <div className="max-w-[1540px] mx-auto px-4 sm:px-6 lg:px-8 py-3 pb-4 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-400">
+            <div className="flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-[#f59e0b]" />
+              <span className="tracking-wider font-extrabold text-slate-200 uppercase">
+                CREATED BY MARCOS PEDRO ALVES
+              </span>
+            </div>
+            <span className="text-[10px] text-slate-400 font-medium">
+              Tecnologia, Inteligência Consular & Inovação
+            </span>
           </div>
         </footer>
       </div>
