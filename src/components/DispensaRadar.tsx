@@ -14,6 +14,7 @@ import {
   BarChart3,
   Percent,
   Download,
+  AlertTriangle,
 } from 'lucide-react';
 import { CompanyProfile } from '../types/licitacao';
 
@@ -72,7 +73,7 @@ export const DispensaRadar: React.FC<DispensaRadarProps> = ({ companyProfile }) 
   };
 
   const generateFallbackProposal = () => {
-    return `PROPOSTA COMERCIAL EXPRESSA - DISPENSA ELETRÔNICA (LEI 14.133/2021, ART. 75, II)
+    return `PROPOSTA COMERCIAL EXPRESSA - DISPENSA ELETRÔNICA (LEI 14.133/2021, ART. 75, II - ATUALIZADO DECRETO Nº 12.807/2025)
 
 À ADMINISTRAÇÃO PÚBLICA CONTRATANTE
 EMPRESA: ${companyProfile.razaoSocial}
@@ -151,21 +152,46 @@ CADASTUR Nº ${companyProfile.cadastur}`;
         {/* Quick Rules Box em Cavidades Táteis */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 text-xs">
           <div className="p-3.5 tactile-well flex flex-col justify-between">
-            <span className="font-bold text-sky-400">Limite de Dispensa Atualizado:</span>
-            <div className="text-slate-300 mt-1 text-[11px] leading-relaxed">
-              Até R$ 59.906,02 para serviços e compras gerais (Decreto Federal nº 11.871/2023).
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <span className="font-bold text-sky-400">Limites de Dispensa (Art. 75):</span>
+                <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-sky-500/15 text-sky-300 font-mono font-bold">2026</span>
+              </div>
+              <div className="space-y-1.5 text-slate-300 text-[11px] leading-snug mt-1.5">
+                <div className="p-1.5 rounded-lg bg-black/20 border border-white/[0.04]">
+                  <div className="text-[10px] text-amber-300 font-bold uppercase tracking-wider">Outras compras e serviços (Turismo / Passagens):</div>
+                  <div className="font-mono text-xs font-bold text-white mt-0.5">Até R$ 65.492,11</div>
+                </div>
+                <div className="p-1.5 rounded-lg bg-black/20 border border-white/[0.04]">
+                  <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Obras, engenharia e manutenção de veículos:</div>
+                  <div className="font-mono text-xs text-slate-300 mt-0.5">Até R$ 130.984,20</div>
+                </div>
+              </div>
+            </div>
+            <div className="text-[10px] text-slate-400 mt-2 pt-1 border-t border-white/[0.06]">
+              Atualizado pelo Decreto nº 12.807/2025
             </div>
           </div>
           <div className="p-3.5 tactile-well flex flex-col justify-between">
-            <span className="font-bold text-emerald-400">Habilitação Descomplicada:</span>
-            <div className="text-slate-300 mt-1 text-[11px] leading-relaxed">
-              Exige regularidade fiscal, trabalhista (CNDT, FGTS, Receita) e CADASTUR ativo.
+            <div>
+              <span className="font-bold text-emerald-400 block mb-1">Habilitação Descomplicada:</span>
+              <div className="text-slate-300 text-[11px] leading-relaxed">
+                Exige regularidade fiscal, trabalhista (CNDT, FGTS, Receita) e CADASTUR ativo no Ministério do Turismo.
+              </div>
+            </div>
+            <div className="text-[10px] text-emerald-400/90 mt-2 pt-1 border-t border-white/[0.06] font-medium">
+              Rito ágil: sessão de lances em 3 a 5 dias úteis
             </div>
           </div>
           <div className="p-3.5 tactile-well flex flex-col justify-between">
-            <span className="font-bold text-amber-400">Repasse Neutro de Taxas:</span>
-            <div className="text-slate-300 mt-1 text-[11px] leading-relaxed">
-              As taxas da ANAC são valores de repasse puro, não integrando a base de cálculo tributária.
+            <div>
+              <span className="font-bold text-amber-400 block mb-1">Repasse Neutro de Taxas & DU:</span>
+              <div className="text-slate-300 text-[11px] leading-relaxed">
+                As taxas da ANAC são valores de repasse puro, não integrando a base de cálculo tributária.
+              </div>
+            </div>
+            <div className="text-[10px] text-amber-400/90 mt-2 pt-1 border-t border-white/[0.06] font-medium">
+              Faturamento transparente para a agência
             </div>
           </div>
         </div>
@@ -318,9 +344,28 @@ CADASTUR Nº ${companyProfile.cadastur}`;
               </div>
               <div className="flex justify-between text-white font-bold pt-2 border-t border-white/[0.06] text-sm">
                 <span>Total da Proposta:</span>
-                <span className="text-emerald-400">R$ {valorTotalProposta.toFixed(2)}</span>
+                <span className="text-emerald-400 font-mono">R$ {valorTotalProposta.toFixed(2)}</span>
               </div>
             </div>
+
+            {/* Verificação em Tempo Real do Limite Legal de Dispensa (Decreto 12.807/2025) */}
+            {valorTotalProposta <= 65492.11 ? (
+              <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-between text-[11px]">
+                <span className="text-emerald-300 font-semibold flex items-center gap-1.5">
+                  <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>Enquadrado no limite de R$ 65.492,11 (Art. 75, II · Dec. 12.807/2025)</span>
+                </span>
+                <span className="font-mono text-emerald-400 font-bold text-[10px] hidden sm:inline">100% REGULAR</span>
+              </div>
+            ) : (
+              <div className="p-2.5 rounded-xl bg-amber-500/15 border border-amber-500/35 flex items-center justify-between text-[11px]">
+                <span className="text-amber-300 font-semibold flex items-center gap-1.5">
+                  <AlertTriangle className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <span>Atenção: Excede o teto de R$ 65.492,11 para compras e serviços (Dec. 12.807/2025). Exige Pregão Eletrônico.</span>
+                </span>
+                <span className="font-mono text-amber-400 font-bold text-[10px] hidden sm:inline">ACIMA DO TETO</span>
+              </div>
+            )}
 
             <button
               onClick={handleGenerateQuote}
